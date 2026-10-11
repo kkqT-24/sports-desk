@@ -318,7 +318,7 @@ function renderPvP(){const d=stats(DATA.filter(DESK)),s=stats(DATA.filter(p=>p.s
  $("pvp").innerHTML=`<div class="vs">${side("Played · desk",d,any&&diff>0.005)}<div class="mid">VS</div>${side("Passed · skips",s,any&&diff<-0.005)}</div><div class="verdict">${v}</div>`}
 
 // ---------- 4. bot leaderboard ----------
-const BOTS=[["Line Scout","🔭"],["Prop Scout","🎯"],["Skeptic","🧐"]];
+const BOTS=[["Kent","👑"],["Line Scout","🔭"],["Prop Scout","🎯"],["Skeptic","🧐"]];
 function renderLB(){
  const rows=BOTS.map(([nm,ic])=>{const cr=DATA.filter(p=>(p.credit||[]).includes(nm)),dk=cr.filter(DESK),ps=cr.filter(p=>p.source==="passed"),st=stats(dk);
   const r={nm,ic,cr,dk,ps,st,score:st.profit};
