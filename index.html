@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="KBets">
 <meta name="application-name" content="KBets">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1791698053">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1791722843">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="manifest" href="manifest.webmanifest">
@@ -132,7 +132,7 @@ svg text{font-family:Menlo,Consolas,monospace}
 <div id="samplebar"></div>
 <div class="ptr" id="ptr">↻</div>
 <header><div style="flex:1"><h1>Kent's Sports <span>Desk</span></h1>
-<div class="sub">Every pick the desk makes · 1 unit flat · updated Sun Oct 11, 2026 1:54 AM ET</div></div></header>
+<div class="sub">Every pick the desk makes · 1 unit flat · updated Sun Oct 11, 2026 8:47 AM ET</div></div></header>
 <div class="fund" id="fund"></div>
 <div id="pin"></div>
 <div class="tabs" id="tabs"></div>
@@ -151,7 +151,7 @@ svg text{font-family:Menlo,Consolas,monospace}
 <footer>Desk picks only, not your real-money bets. CLV = closing implied prob − our implied prob (pct points, + = beat the close). ROI = units won ÷ units risked on settled W/L picks. Passed = ideas you skipped, shadow-tracked for reference. Live scores from ESPN while a game is on.</footer>
 </div>
 <script>
-const DATA=[{"id": "rush-1", "week": "2026-10-05", "posted": "2026-10-10", "sport": "nfl", "game": "DET@ARI", "start": "2026-10-11 16:25", "bet": "UNDER 54.5", "market": "total", "book": "DK", "price": -105.0, "min": null, "conf": "\u2014", "source": "passed", "vskc": false, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "clv": null, "notes": "Shadow-tracked; cut from rush set 2026-10-10 (nfl-high-total-unders: no edge at the price)", "start_iso": "2026-10-11T16:25:00-04:00", "credit": ["Line Scout"]}, {"id": "rush-2", "week": "2026-10-05", "posted": "2026-10-10", "sport": "nfl", "game": "BUF@LAR", "start": "2026-10-12 20:15", "bet": "UNDER 54.5", "market": "total", "book": "DK", "price": -102.0, "min": null, "conf": "\u2014", "source": "passed", "vskc": false, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "clv": null, "notes": "Shadow-tracked; cut from rush set 2026-10-10 (nfl-high-total-unders)", "start_iso": "2026-10-12T20:15:00-04:00", "credit": ["Line Scout"]}, {"id": "rush-3", "week": "2026-10-05", "posted": "2026-10-10", "sport": "nfl", "game": "LAC@KC", "start": "2026-10-18 16:25", "bet": "LAC +7.5", "market": "spread", "book": "LowVig", "price": 100.0, "min": null, "conf": "\u2014", "source": "passed", "vskc": true, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "clv": null, "notes": "Shadow-tracked; cut from rush set 2026-10-10 (nfl-fade-home-team-off-bye: Skeptic objection unanswered)", "start_iso": "2026-10-18T16:25:00-04:00", "credit": ["Line Scout", "Skeptic"]}], SAMPLE=false;
+const DATA=[{"id": "wind-1", "week": "2026-10-05", "posted": "2026-10-11", "sport": "nfl", "game": "CLE@NYJ", "start": "2026-10-11 13:00", "bet": "UNDER 39.5", "market": "total", "book": "LowVig", "price": -107.0, "min": null, "conf": "\u2014", "source": "passed", "vskc": false, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "clv": null, "notes": "Shadow-tracked; withdrawn in debate 2026-10-11 (wind 10+ mph under, total not dropped 2+; fair 52.0-52.7% vs 51.7% implied, ~break-even). Price from snapshot_sun.json 8:40 AM ET", "start_iso": "2026-10-11T13:00:00-04:00", "credit": ["Line Scout"]}, {"id": "rush-1", "week": "2026-10-05", "posted": "2026-10-10", "sport": "nfl", "game": "DET@ARI", "start": "2026-10-11 16:25", "bet": "UNDER 54.5", "market": "total", "book": "DK", "price": -105.0, "min": null, "conf": "\u2014", "source": "passed", "vskc": false, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "clv": null, "notes": "Shadow-tracked; cut from rush set 2026-10-10 (nfl-high-total-unders: no edge at the price)", "start_iso": "2026-10-11T16:25:00-04:00", "credit": ["Line Scout"]}, {"id": "rush-2", "week": "2026-10-05", "posted": "2026-10-10", "sport": "nfl", "game": "BUF@LAR", "start": "2026-10-12 20:15", "bet": "UNDER 54.5", "market": "total", "book": "DK", "price": -102.0, "min": null, "conf": "\u2014", "source": "passed", "vskc": false, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "clv": null, "notes": "Shadow-tracked; cut from rush set 2026-10-10 (nfl-high-total-unders)", "start_iso": "2026-10-12T20:15:00-04:00", "credit": ["Line Scout"]}, {"id": "rush-3", "week": "2026-10-05", "posted": "2026-10-10", "sport": "nfl", "game": "LAC@KC", "start": "2026-10-18 16:25", "bet": "LAC +7.5", "market": "spread", "book": "LowVig", "price": 100.0, "min": null, "conf": "\u2014", "source": "passed", "vskc": true, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "clv": null, "notes": "Shadow-tracked; cut from rush set 2026-10-10 (nfl-fade-home-team-off-bye: Skeptic objection unanswered)", "start_iso": "2026-10-18T16:25:00-04:00", "credit": ["Line Scout", "Skeptic"]}], SAMPLE=false;
 const SPORT={nfl:"NFL",ncaaf:"CFB",nba:"NBA",tennis:"Tennis",parlay:"Parlay"};
 const ICON={nfl:"🏈",ncaaf:"🏈",nba:"🏀",tennis:"🎾",parlay:"🎟️"};
 const TABS=[["desk","Picks",p=>p.source!=="passed"],["passed","Passed",p=>p.source==="passed"],["all","All",p=>true]];
@@ -346,7 +346,7 @@ function renderLB(){
   if(r.nm==="Skeptic"&&!r.set){const pn=r.ps.filter(p=>p.result==="PENDING").length;rt=pn?`<span class="mut">${pn} cut${pn>1?"s":""} pending</span>`:`<span class="mut">—</span>`}
   return `<div class="it"><div class="md">${md}</div><div><div class="nm">${esc(NICK[r.nm]||r.nm)}</div><div class="mut">${sub}</div></div><div class="rt">${rt}</div></div>`}).join("")}
 // ---------- auto-update (home-screen apps have no pull-to-refresh) ----------
-const BUILD_ID="Sun Oct 11, 2026 1:54 AM ET";
+const BUILD_ID="Sun Oct 11, 2026 8:47 AM ET";
 function hardReload(){location.replace(location.pathname+"?r="+Date.now()+location.hash)}
 async function checkUpdate(){try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/const BUILD_ID="([^"]*)"/);if(m&&m[1]!==BUILD_ID)hardReload()}catch(e){}}
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")checkUpdate()});
