@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="KBets">
 <meta name="application-name" content="KBets">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1791697653">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1791697781">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="manifest" href="manifest.webmanifest">
@@ -132,10 +132,12 @@ svg text{font-family:Menlo,Consolas,monospace}
 <div id="samplebar"></div>
 <div class="ptr" id="ptr">↻</div>
 <header><div style="flex:1"><h1>Kent's Sports <span>Desk</span></h1>
-<div class="sub">Every pick the desk makes · 1 unit flat · updated Sun Oct 11, 2026 1:47 AM ET</div></div></header>
+<div class="sub">Every pick the desk makes · 1 unit flat · updated Sun Oct 11, 2026 1:49 AM ET</div></div></header>
 <div class="fund" id="fund"></div>
 <div id="pin"></div>
 <div class="tabs" id="tabs"></div>
+<div id="lbview" style="display:none"><div class="card"><h3>Desk leaderboard</h3><div id="lb" class="lb"></div></div></div>
+<div id="statsview">
 <div class="board" id="board"></div>
 <div id="hero"></div>
 <div class="grid2"><div class="card"><h3>Bankroll ride · cumulative units</h3><div id="chart"></div></div>
@@ -143,17 +145,17 @@ svg text{font-family:Menlo,Consolas,monospace}
 <div class="grid3"><div class="card"><h3>By sport</h3><div id="bysport" class="bars"></div></div>
 <div class="card"><h3>By confidence</h3><div id="byconf" class="bars"></div></div>
 <div class="card"><h3>Best &amp; worst</h3><div id="bw" class="bw"></div></div></div>
-<div class="grid2 even"><div class="card"><h3>Passed vs Played</h3><div id="pvp"></div></div>
-<div class="card"><h3>Desk leaderboard</h3><div id="lb" class="lb"></div></div></div>
+<div class="card"><h3>Passed vs Played</h3><div id="pvp"></div></div>
 <div class="card" style="margin-top:12px"><h3>All picks</h3><div id="tbl"></div></div>
+</div>
 <footer>Desk picks only, not your real-money bets. CLV = closing implied prob − our implied prob (pct points, + = beat the close). ROI = units won ÷ units risked on settled W/L picks. Passed = ideas you skipped, shadow-tracked for reference. Live scores from ESPN while a game is on.</footer>
 </div>
 <script>
 const DATA=[{"id": "rush-1", "week": "2026-10-05", "posted": "2026-10-10", "sport": "nfl", "game": "DET@ARI", "start": "2026-10-11 16:25", "bet": "UNDER 54.5", "market": "total", "book": "DK", "price": -105.0, "min": null, "conf": "\u2014", "source": "passed", "vskc": false, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "clv": null, "notes": "Shadow-tracked; cut from rush set 2026-10-10 (nfl-high-total-unders: no edge at the price)", "start_iso": "2026-10-11T16:25:00-04:00", "credit": ["Line Scout"]}, {"id": "rush-2", "week": "2026-10-05", "posted": "2026-10-10", "sport": "nfl", "game": "BUF@LAR", "start": "2026-10-12 20:15", "bet": "UNDER 54.5", "market": "total", "book": "DK", "price": -102.0, "min": null, "conf": "\u2014", "source": "passed", "vskc": false, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "clv": null, "notes": "Shadow-tracked; cut from rush set 2026-10-10 (nfl-high-total-unders)", "start_iso": "2026-10-12T20:15:00-04:00", "credit": ["Line Scout"]}, {"id": "rush-3", "week": "2026-10-05", "posted": "2026-10-10", "sport": "nfl", "game": "LAC@KC", "start": "2026-10-18 16:25", "bet": "LAC +7.5", "market": "spread", "book": "LowVig", "price": 100.0, "min": null, "conf": "\u2014", "source": "passed", "vskc": true, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "clv": null, "notes": "Shadow-tracked; cut from rush set 2026-10-10 (nfl-fade-home-team-off-bye: Skeptic objection unanswered)", "start_iso": "2026-10-18T16:25:00-04:00", "credit": ["Line Scout", "Skeptic"]}], SAMPLE=false;
 const SPORT={nfl:"NFL",ncaaf:"CFB",nba:"NBA",tennis:"Tennis",parlay:"Parlay"};
 const ICON={nfl:"🏈",ncaaf:"🏈",nba:"🏀",tennis:"🎾",parlay:"🎟️"};
-const TABS=[["desk","Desk picks",p=>p.source!=="passed"],["passed","Passed (shadow)",p=>p.source==="passed"],["all","Everything",p=>true]];
-let cur=["desk","passed","all"].includes(location.hash.slice(1))?location.hash.slice(1):"desk";
+const TABS=[["desk","Desk picks",p=>p.source!=="passed"],["passed","Passed",p=>p.source==="passed"],["all","All",p=>true]];
+let cur=["desk","passed","all","lb"].includes(location.hash.slice(1))?location.hash.slice(1):"desk";
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const fp=v=>v==null?"—":(v>0?"+":"")+Math.round(v);
@@ -180,11 +182,12 @@ function tile(k,v,s,c){return `<div class="tile"><div class="k">${k}</div><div c
 function renderFund(){const GOAL=2000,PER_UNIT=1;const st=stats(DATA.filter(DESK));const won=st.profit*PER_UNIT;const pct=Math.max(0,Math.min(100,won/GOAL*100));
  $("fund").innerHTML=`<div class="row"><div class="t">📱 iPhone Duo Fund</div><div class="amt">$${won.toFixed(2)} <span class="mut" style="font-size:13px">/ $2,000</span></div></div><div class="trk"><div class="fill" style="width:${pct}%"></div></div><div class="mut">${won>0?`${pct.toFixed(1)}% there · desk winnings at $${PER_UNIT}/unit`:`Desk winnings fill this up at $${PER_UNIT} per unit won.`}</div>`}
 function render(){renderFund();
- const f=TABS.find(t=>t[0]===cur)[2], ps=DATA.filter(f), st=stats(ps);
+ const isLB=cur==="lb";$("lbview").style.display=isLB?"":"none";$("statsview").style.display=isLB?"none":"";
+ const f=isLB?(p=>true):TABS.find(t=>t[0]===cur)[2], ps=DATA.filter(f), st=stats(ps);
  $("samplebar").innerHTML=SAMPLE?'<div class="samplebar"><b>SAMPLE DATA · NOT REAL PICKS · LAYOUT TEST ONLY</b></div>':"";
  renderPin();renderPvP();renderLB();
- $("tabs").innerHTML=TABS.map(t=>`<button class="tab ${t[0]===cur?"on":""}" data-t="${t[0]}">${t[1]}<span class="ct">${DATA.filter(t[2]).length}</span></button>`).join("");
- document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{cur=b.dataset.t;render()});
+ $("tabs").innerHTML=TABS.map(t=>`<button class="tab ${t[0]===cur?"on":""}" data-t="${t[0]}">${t[1]}<span class="ct">${DATA.filter(t[2]).length}</span></button>`).join("")+`<button class="tab ${isLB?"on":""}" data-t="lb">🏆 Leaderboard</button>`;
+ document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{cur=b.dataset.t;history.replaceState(null,"","#"+cur);render()});
  const settled=ps.filter(p=>p.result!=="PENDING").sort((a,b)=>(a.start||"").localeCompare(b.start||""));
  // streak
  let sk="",sn=0;for(const p of [...settled].reverse()){if(p.result==="P")continue;if(!sk){sk=p.result;sn=1}else if(p.result===sk)sn++;else break}
@@ -343,7 +346,7 @@ function renderLB(){
   if(r.nm==="Skeptic"&&!r.set){const pn=r.ps.filter(p=>p.result==="PENDING").length;rt=pn?`<span class="mut">${pn} cut${pn>1?"s":""} pending</span>`:`<span class="mut">—</span>`}
   return `<div class="it"><div class="md">${md}</div><div><div class="nm">${esc(NICK[r.nm]||r.nm)}</div><div class="mut">${sub}</div></div><div class="rt">${rt}</div></div>`}).join("")}
 // ---------- auto-update (home-screen apps have no pull-to-refresh) ----------
-const BUILD_ID="Sun Oct 11, 2026 1:47 AM ET";
+const BUILD_ID="Sun Oct 11, 2026 1:49 AM ET";
 function hardReload(){location.replace(location.pathname+"?r="+Date.now()+location.hash)}
 async function checkUpdate(){try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/const BUILD_ID="([^"]*)"/);if(m&&m[1]!==BUILD_ID)hardReload()}catch(e){}}
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")checkUpdate()});
