@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="KBets">
 <meta name="application-name" content="KBets">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1791722843">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1791722939">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="manifest" href="manifest.webmanifest">
@@ -132,7 +132,7 @@ svg text{font-family:Menlo,Consolas,monospace}
 <div id="samplebar"></div>
 <div class="ptr" id="ptr">↻</div>
 <header><div style="flex:1"><h1>Kent's Sports <span>Desk</span></h1>
-<div class="sub">Every pick the desk makes · 1 unit flat · updated Sun Oct 11, 2026 8:47 AM ET</div></div></header>
+<div class="sub">Every pick the desk makes · 1 unit flat · updated Sun Oct 11, 2026 8:48 AM ET</div></div></header>
 <div class="fund" id="fund"></div>
 <div id="pin"></div>
 <div class="tabs" id="tabs"></div>
@@ -328,8 +328,8 @@ function renderPvP(){const d=stats(DATA.filter(DESK)),s=stats(DATA.filter(p=>p.s
  $("pvp").innerHTML=`<div class="vs">${side("Played · desk",d,any&&diff>0.005)}<div class="mid">VS</div>${side("Passed · skips",s,any&&diff<-0.005)}</div><div class="verdict">${v}</div>`}
 
 // ---------- 4. bot leaderboard ----------
-const BOTS=[["Kent","👑"],["Line Scout","🐐"],["Prop Scout","👓"],["Skeptic","🐍"]];
-const NICK={"Line Scout":"Mahomes","Prop Scout":"Faker","Skeptic":"Kobe"};
+const BOTS=[["Kent","👑"],["Line Scout","🐐"],["Prop Scout","✨"],["Skeptic","🐍"]];
+const NICK={"Line Scout":"Mahomes","Prop Scout":"Tina","Skeptic":"Kobe"};
 function renderLB(){
  const rows=BOTS.map(([nm,ic])=>{const cr=DATA.filter(p=>(p.credit||[]).includes(nm)),dk=cr.filter(DESK),ps=cr.filter(p=>p.source==="passed"),st=stats(dk);
   const r={nm,ic,cr,dk,ps,st,score:st.profit};
@@ -346,7 +346,7 @@ function renderLB(){
   if(r.nm==="Skeptic"&&!r.set){const pn=r.ps.filter(p=>p.result==="PENDING").length;rt=pn?`<span class="mut">${pn} cut${pn>1?"s":""} pending</span>`:`<span class="mut">—</span>`}
   return `<div class="it"><div class="md">${md}</div><div><div class="nm">${esc(NICK[r.nm]||r.nm)}</div><div class="mut">${sub}</div></div><div class="rt">${rt}</div></div>`}).join("")}
 // ---------- auto-update (home-screen apps have no pull-to-refresh) ----------
-const BUILD_ID="Sun Oct 11, 2026 8:47 AM ET";
+const BUILD_ID="Sun Oct 11, 2026 8:48 AM ET";
 function hardReload(){location.replace(location.pathname+"?r="+Date.now()+location.hash)}
 async function checkUpdate(){try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/const BUILD_ID="([^"]*)"/);if(m&&m[1]!==BUILD_ID)hardReload()}catch(e){}}
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")checkUpdate()});
