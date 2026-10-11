@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="KBets">
 <meta name="application-name" content="KBets">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1791739027">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1791739382">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="manifest" href="manifest.webmanifest">
@@ -132,7 +132,7 @@ svg text{font-family:Menlo,Consolas,monospace}
 <div id="samplebar"></div>
 <div class="ptr" id="ptr">↻</div>
 <header><div style="flex:1"><h1>Kent's Sports <span>Desk</span></h1>
-<div class="sub">Every pick the desk makes · 1 unit flat · updated Sun Oct 11, 2026 1:17 PM ET</div></div></header>
+<div class="sub">Every pick the desk makes · $20 a pick, flat · updated Sun Oct 11, 2026 1:23 PM ET</div></div></header>
 <div class="fund" id="fund"></div>
 <div id="pin"></div>
 <div class="tabs" id="tabs"></div>
@@ -140,7 +140,7 @@ svg text{font-family:Menlo,Consolas,monospace}
 <div id="statsview">
 <div class="board" id="board"></div>
 <div id="hero"></div>
-<div class="grid2"><div class="card"><h3>Bankroll ride · cumulative units</h3><div id="chart"></div></div>
+<div class="grid2"><div class="card"><h3>Bankroll ride, $20 per pick</h3><div id="chart"></div></div>
 <div class="card"><h3>Streak</h3><div id="streak"></div></div></div>
 <div class="grid3"><div class="card"><h3>By sport</h3><div id="bysport" class="bars"></div></div>
 <div class="card"><h3>By confidence</h3><div id="byconf" class="bars"></div></div>
@@ -148,10 +148,10 @@ svg text{font-family:Menlo,Consolas,monospace}
 <div class="card"><h3>Passed vs Played</h3><div id="pvp"></div></div>
 <div class="card" style="margin-top:12px"><h3>All picks</h3><div id="tbl"></div></div>
 </div>
-<footer>Desk picks only, not your real-money bets. CLV = closing implied prob − our implied prob (pct points, + = beat the close). ROI = units won ÷ units risked on settled W/L picks. Passed = ideas you skipped, shadow-tracked for reference. Live scores from ESPN while a game is on.</footer>
+<footer>Desk P&amp;L is graded at a flat $20 per pick, so the record is fair no matter what you bet. The iPhone Duo Fund counts only your real bets (what you actually staked). CLV = closing implied prob − our implied prob (pct points, + = beat the close). ROI = dollars won ÷ dollars risked on settled W/L picks. Passed = ideas you skipped, shadow-tracked for reference. Live scores from ESPN while a game is on.</footer>
 </div>
 <script>
-const DATA=[{"id": "kent-1", "week": "2026-10-05", "posted": "2026-10-11", "sport": "parlay", "game": "IND@PIT + MIN@NO", "start": "2026-10-11 13:00", "bet": "Jonathan Taylor 60+ rush yds + Tyler Shough 200+ pass yds (2-leg parlay)", "market": "parlay", "book": "FanDuel", "price": -124.0, "min": null, "conf": "\u2014", "source": "card", "vskc": false, "close": null, "result": "PENDING", "units": 20.0, "profit": null, "clv": null, "notes": "Kent's own fun bet, placed 1:14 PM ET; legs -310 and -270", "start_iso": "2026-10-11T13:00:00-04:00", "credit": ["Kent"]}, {"id": "prop-1", "week": "2026-10-05", "posted": "2026-10-11", "sport": "nfl", "game": "CHI@GB", "start": "2026-10-11 13:00", "bet": "Rome Odunze OVER 39.5 receiving yards", "market": "prop", "book": "FanDuel", "price": -113.0, "min": -112.0, "conf": "\u2014", "source": "passed", "vskc": false, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "clv": null, "notes": "Shadow-tracked; withdrawn 9:35 AM ET 2026-10-11 (fair 55.9% vs -113 implied 53.05%, edge below the -112 minimum)", "start_iso": "2026-10-11T13:00:00-04:00", "credit": ["Prop Scout"]}, {"id": "wind-1", "week": "2026-10-05", "posted": "2026-10-11", "sport": "nfl", "game": "CLE@NYJ", "start": "2026-10-11 13:00", "bet": "UNDER 39.5", "market": "total", "book": "LowVig", "price": -107.0, "min": null, "conf": "\u2014", "source": "passed", "vskc": false, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "clv": null, "notes": "Shadow-tracked; withdrawn in debate 2026-10-11 (wind 10+ mph under, total not dropped 2+; fair 52.0-52.7% vs 51.7% implied, ~break-even). Price from snapshot_sun.json 8:40 AM ET", "start_iso": "2026-10-11T13:00:00-04:00", "credit": ["Line Scout"]}, {"id": "rush-1", "week": "2026-10-05", "posted": "2026-10-10", "sport": "nfl", "game": "DET@ARI", "start": "2026-10-11 16:25", "bet": "UNDER 54.5", "market": "total", "book": "DK", "price": -105.0, "min": null, "conf": "\u2014", "source": "passed", "vskc": false, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "clv": null, "notes": "Shadow-tracked; cut from rush set 2026-10-10 (nfl-high-total-unders: no edge at the price)", "start_iso": "2026-10-11T16:25:00-04:00", "credit": ["Line Scout"]}, {"id": "rush-2", "week": "2026-10-05", "posted": "2026-10-10", "sport": "nfl", "game": "BUF@LAR", "start": "2026-10-12 20:15", "bet": "UNDER 54.5", "market": "total", "book": "DK", "price": -102.0, "min": null, "conf": "\u2014", "source": "passed", "vskc": false, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "clv": null, "notes": "Shadow-tracked; cut from rush set 2026-10-10 (nfl-high-total-unders)", "start_iso": "2026-10-12T20:15:00-04:00", "credit": ["Line Scout"]}, {"id": "rush-3", "week": "2026-10-05", "posted": "2026-10-10", "sport": "nfl", "game": "LAC@KC", "start": "2026-10-18 16:25", "bet": "LAC +7.5", "market": "spread", "book": "LowVig", "price": 100.0, "min": null, "conf": "\u2014", "source": "passed", "vskc": true, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "clv": null, "notes": "Shadow-tracked; cut from rush set 2026-10-10 (nfl-fade-home-team-off-bye: Skeptic objection unanswered)", "start_iso": "2026-10-18T16:25:00-04:00", "credit": ["Line Scout", "Skeptic"]}], SAMPLE=false;
+const DATA=[{"id": "kent-1", "week": "2026-10-05", "posted": "2026-10-11", "sport": "parlay", "game": "IND@PIT + MIN@NO", "start": "2026-10-11 13:00", "bet": "Jonathan Taylor 60+ rush yds + Tyler Shough 200+ pass yds (2-leg parlay)", "market": "parlay", "book": "FanDuel", "price": -124.0, "min": null, "conf": "\u2014", "source": "card", "vskc": false, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "real_stake": 20.0, "real_profit": null, "clv": null, "notes": "Kent's own fun bet, placed 1:14 PM ET; legs -310 and -270", "start_iso": "2026-10-11T13:00:00-04:00", "credit": ["Kent"]}, {"id": "prop-1", "week": "2026-10-05", "posted": "2026-10-11", "sport": "nfl", "game": "CHI@GB", "start": "2026-10-11 13:00", "bet": "Rome Odunze OVER 39.5 receiving yards", "market": "prop", "book": "FanDuel", "price": -113.0, "min": -112.0, "conf": "\u2014", "source": "passed", "vskc": false, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "real_stake": null, "real_profit": null, "clv": null, "notes": "Shadow-tracked; withdrawn 9:35 AM ET 2026-10-11 (fair 55.9% vs -113 implied 53.05%, edge below the -112 minimum)", "start_iso": "2026-10-11T13:00:00-04:00", "credit": ["Prop Scout"]}, {"id": "wind-1", "week": "2026-10-05", "posted": "2026-10-11", "sport": "nfl", "game": "CLE@NYJ", "start": "2026-10-11 13:00", "bet": "UNDER 39.5", "market": "total", "book": "LowVig", "price": -107.0, "min": null, "conf": "\u2014", "source": "passed", "vskc": false, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "real_stake": null, "real_profit": null, "clv": null, "notes": "Shadow-tracked; withdrawn in debate 2026-10-11 (wind 10+ mph under, total not dropped 2+; fair 52.0-52.7% vs 51.7% implied, ~break-even). Price from snapshot_sun.json 8:40 AM ET", "start_iso": "2026-10-11T13:00:00-04:00", "credit": ["Line Scout"]}, {"id": "rush-1", "week": "2026-10-05", "posted": "2026-10-10", "sport": "nfl", "game": "DET@ARI", "start": "2026-10-11 16:25", "bet": "UNDER 54.5", "market": "total", "book": "DK", "price": -105.0, "min": null, "conf": "\u2014", "source": "passed", "vskc": false, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "real_stake": null, "real_profit": null, "clv": null, "notes": "Shadow-tracked; cut from rush set 2026-10-10 (nfl-high-total-unders: no edge at the price)", "start_iso": "2026-10-11T16:25:00-04:00", "credit": ["Line Scout"]}, {"id": "rush-2", "week": "2026-10-05", "posted": "2026-10-10", "sport": "nfl", "game": "BUF@LAR", "start": "2026-10-12 20:15", "bet": "UNDER 54.5", "market": "total", "book": "DK", "price": -102.0, "min": null, "conf": "\u2014", "source": "passed", "vskc": false, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "real_stake": null, "real_profit": null, "clv": null, "notes": "Shadow-tracked; cut from rush set 2026-10-10 (nfl-high-total-unders)", "start_iso": "2026-10-12T20:15:00-04:00", "credit": ["Line Scout"]}, {"id": "rush-3", "week": "2026-10-05", "posted": "2026-10-10", "sport": "nfl", "game": "LAC@KC", "start": "2026-10-18 16:25", "bet": "LAC +7.5", "market": "spread", "book": "LowVig", "price": 100.0, "min": null, "conf": "\u2014", "source": "passed", "vskc": true, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "real_stake": null, "real_profit": null, "clv": null, "notes": "Shadow-tracked; cut from rush set 2026-10-10 (nfl-fade-home-team-off-bye: Skeptic objection unanswered)", "start_iso": "2026-10-18T16:25:00-04:00", "credit": ["Line Scout", "Skeptic"]}], SAMPLE=false;
 const SPORT={nfl:"NFL",ncaaf:"CFB",nba:"NBA",tennis:"Tennis",parlay:"Parlay"};
 const ICON={nfl:"🏈",ncaaf:"🏈",nba:"🏀",tennis:"🎾",parlay:"🎟️"};
 const TABS=[["desk","Picks",p=>p.source!=="passed"],["passed","Passed",p=>p.source==="passed"],["all","All",p=>true]];
@@ -160,6 +160,9 @@ const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const fp=v=>v==null?"—":(v>0?"+":"")+Math.round(v);
 const fu=v=>(v>0?"+":"")+v.toFixed(2);
+const PER_UNIT=20;
+const fd=v=>(v>0.004?"+":v<-0.004?"-":"")+"$"+Math.abs(v).toFixed(2);
+const fm=u=>fd((u||0)*PER_UNIT);
 const cls=v=>v>0?"pos":v<0?"neg":"";
 const TZ="America/New_York";
 function when(s,iso){if(!s)return"";const d=new Date(iso||s.replace(" ","T"));if(isNaN(d))return s;return d.toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric",timeZone:TZ})+" "+d.toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit",timeZone:TZ})}
@@ -179,8 +182,11 @@ function stats(ps){const s={W:0,L:0,P:0,pend:0,profit:0,risk:0,clv:[],beat:0};
  s.n=s.W+s.L+s.P;s.roi=s.risk?s.profit/s.risk*100:null;s.avgclv=s.clv.length?s.clv.reduce((a,b)=>a+b,0)/s.clv.length:null;
  s.beatpct=s.clv.length?s.beat/s.clv.length*100:null;return s}
 function tile(k,v,s,c){return `<div class="tile"><div class="k">${k}</div><div class="v ${c||""}">${v}</div><div class="s">${s||"&nbsp;"}</div></div>`}
-function renderFund(){const GOAL=2000,PER_UNIT=1;const st=stats(DATA.filter(DESK));const won=st.profit*PER_UNIT;const pct=Math.max(0,Math.min(100,won/GOAL*100));
- $("fund").innerHTML=`<div class="row"><div class="t">📱 iPhone Duo Fund</div><div class="amt">$${won.toFixed(2)} <span class="mut" style="font-size:13px">/ $2,000</span></div></div><div class="trk"><div class="fill" style="width:${pct}%"></div></div><div class="mut">${won>0?`${pct.toFixed(1)}% there · desk winnings at $${PER_UNIT}/unit`:`Desk winnings fill this up at $${PER_UNIT} per unit won.`}</div>`}
+function renderFund(){const GOAL=2000;const real=DATA.filter(p=>p.real_stake);const done=real.filter(p=>p.real_profit!=null);
+ const won=done.reduce((a,p)=>a+p.real_profit,0);const open=real.filter(p=>p.real_profit==null).reduce((a,p)=>a+p.real_stake,0);
+ const pct=Math.max(0,Math.min(100,won/GOAL*100));
+ const note=won>0?`${pct.toFixed(1)}% there · your real winnings`:won<0?`Your real winnings · down ${fd(won).slice(1)} so far`:`Fills up as your real bets win.`;
+ $("fund").innerHTML=`<div class="row"><div class="t">📱 iPhone Duo Fund</div><div class="amt ${won<0?"neg":""}">${won<0?"-":""}$${Math.abs(won).toFixed(2)} <span class="mut" style="font-size:13px">/ $2,000</span></div></div><div class="trk"><div class="fill" style="width:${pct}%;${pct>0?"":"min-width:0"}"></div></div><div class="mut">${note}${open?` · $${open.toFixed(0)} riding`:""}</div>`}
 function render(){renderFund();
  const isLB=cur==="lb";$("lbview").style.display=isLB?"":"none";$("statsview").style.display=isLB?"none":"";
  const f=isLB?(p=>true):TABS.find(t=>t[0]===cur)[2], ps=DATA.filter(f), st=stats(ps);
@@ -193,8 +199,8 @@ function render(){renderFund();
  let sk="",sn=0;for(const p of [...settled].reverse()){if(p.result==="P")continue;if(!sk){sk=p.result;sn=1}else if(p.result===sk)sn++;else break}
  $("board").innerHTML=
   tile("Record",st.n?`${st.W}-${st.L}-${st.P}`:"0-0-0",`${st.pend} pending`)+
-  tile("Units",st.n?fu(st.profit):"0.00",st.risk?`${st.risk.toFixed(0)}u risked`:"no settled picks",cls(st.profit))+
-  tile("ROI",st.roi==null?"—":(st.roi>0?"+":"")+st.roi.toFixed(1)+"%","per unit risked",cls(st.roi))+
+  tile("P&amp;L",st.n?fm(st.profit):"$0.00",st.risk?`$${(st.risk*PER_UNIT).toFixed(0)} risked`:"no settled picks",cls(st.profit))+
+  tile("ROI",st.roi==null?"—":(st.roi>0?"+":"")+st.roi.toFixed(1)+"%","on dollars risked",cls(st.roi))+
   tile("Avg CLV",st.avgclv==null?"—":(st.avgclv>0?"+":"")+st.avgclv.toFixed(1),"pct points vs close",cls(st.avgclv))+
   tile("Beat the close",st.beatpct==null?"—":st.beatpct.toFixed(0)+"%",st.clv.length?`${st.beat} of ${st.clv.length}`:"needs closing lines")+
   tile("Streak",sk?`${sk}${sn}`:"—",sk?(sk==="W"?"heater":"cold spell"):"no streak yet",sk==="W"?"pos":sk==="L"?"neg":"");
@@ -206,14 +212,14 @@ function render(){renderFund();
  else if(!settled.length){hero=`<div class="hero"><div class="ball">⏳</div><div><h2>Waiting on kickoff</h2><p>${ps.length} pick${ps.length>1?"s":""} on the board, none settled yet. Numbers light up as games finish.</p></div></div>`}
  $("hero").innerHTML=hero;
  // chart
- if(settled.length<1){$("chart").innerHTML=`<div class="empty"><div class="big">📈</div>The units line starts at <b>0.00</b> and draws itself<br>once the first pick settles.</div>`}
- else{let c=0;const pts=[0,...settled.map(p=>c+=p.profit||0)];const W=640,H=220,pl=40,pr=12,pt=28,pb=24;
-  const mx=Math.max(1,...pts),mn=Math.min(-1,...pts);const x=i=>pl+i*(W-pl-pr)/Math.max(1,pts.length-1),y=v=>pt+(mx-v)*(H-pt-pb)/(mx-mn);
+ if(settled.length<1){$("chart").innerHTML=`<div class="empty"><div class="big">📈</div>The bankroll line starts at <b>$0</b> and draws itself<br>once the first pick settles.</div>`}
+ else{let c=0;const pts=[0,...settled.map(p=>c+=(p.profit||0)*PER_UNIT)];const W=640,H=220,pl=40,pr=12,pt=28,pb=24;
+  const mx=Math.max(PER_UNIT,...pts),mn=Math.min(-PER_UNIT,...pts);const x=i=>pl+i*(W-pl-pr)/Math.max(1,pts.length-1),y=v=>pt+(mx-v)*(H-pt-pb)/(mx-mn);
   const line=pts.map((v,i)=>`${i?"L":"M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
   const area=line+` L${x(pts.length-1)},${y(0)} L${x(0)},${y(0)} Z`;const last=pts[pts.length-1];const col=last>=0?"#FFB81C":"#8f6bb8";
-  let g="";const step=Math.max(1,Math.ceil((mx-mn)/4));for(let v=Math.floor(mn/step)*step;v<=mx;v+=step)if(v>=mn)g+=`<line x1="${pl}" x2="${W-pr}" y1="${y(v)}" y2="${y(v)}" stroke="#2a2a2a"/><text x="${pl-6}" y="${y(v)+4}" fill="#9a9a9a" font-size="11" text-anchor="end">${v>0?"+":""}${v}</text>`;
+  let g="";const step=Math.max(10,Math.ceil((mx-mn)/4/10)*10);for(let v=Math.floor(mn/step)*step;v<=mx;v+=step)if(v>=mn)g+=`<line x1="${pl}" x2="${W-pr}" y1="${y(v)}" y2="${y(v)}" stroke="#2a2a2a"/><text x="${pl-6}" y="${y(v)+4}" fill="#9a9a9a" font-size="11" text-anchor="end">${v>0?"+":v<0?"-":""}$${Math.abs(v)}</text>`;
   const dots=pts.slice(1).map((v,i)=>{const r=settled[i].result;return `<circle cx="${x(i+1)}" cy="${y(v)}" r="3.5" fill="${r==="W"?"#FFB81C":r==="L"?"#ff4d6a":"#d0d0d0"}"><title>${esc(settled[i].game+" · "+settled[i].bet+" · "+r)}</title></circle>`}).join("");
-  $("chart").innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="none" style="height:auto;display:block"><defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${col}" stop-opacity=".35"/><stop offset="1" stop-color="${col}" stop-opacity="0"/></linearGradient></defs>${g}<line x1="${pl}" x2="${W-pr}" y1="${y(0)}" y2="${y(0)}" stroke="#E31837" stroke-dasharray="4 4" stroke-opacity=".6"/><path d="${area}" fill="url(#ga)"/><path d="${line}" fill="none" stroke="${col}" stroke-width="2.5" stroke-linejoin="round"/>${dots}<text x="${W-pr}" y="${y(last)-8}" fill="${col}" font-size="13" font-weight="700" text-anchor="end">${fu(last)}u</text><text x="${pl}" y="${H-6}" fill="#9a9a9a" font-size="11">pick 1</text><text x="${W-pr}" y="${H-6}" fill="#9a9a9a" font-size="11" text-anchor="end">pick ${pts.length-1}</text></svg>`}
+  $("chart").innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="none" style="height:auto;display:block"><defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${col}" stop-opacity=".35"/><stop offset="1" stop-color="${col}" stop-opacity="0"/></linearGradient></defs>${g}<line x1="${pl}" x2="${W-pr}" y1="${y(0)}" y2="${y(0)}" stroke="#E31837" stroke-dasharray="4 4" stroke-opacity=".6"/><path d="${area}" fill="url(#ga)"/><path d="${line}" fill="none" stroke="${col}" stroke-width="2.5" stroke-linejoin="round"/>${dots}<text x="${W-pr}" y="${y(last)-8}" fill="${col}" font-size="13" font-weight="700" text-anchor="end">${fd(last)}</text><text x="${pl}" y="${H-6}" fill="#9a9a9a" font-size="11">pick 1</text><text x="${W-pr}" y="${H-6}" fill="#9a9a9a" font-size="11" text-anchor="end">pick ${pts.length-1}</text></svg>`}
  // streak panel
  const last10=settled.filter(p=>p.result!=="P").slice(-10);
  $("streak").innerHTML=sk?`<div class="streak ${sk==="W"?"pos":"neg"}">${sk==="W"?"🔥":"🥶"} ${sk}${sn}</div><div class="flames">${last10.map(p=>p.result==="W"?"🟡":"🔴").join("")}</div><div class="mut">last ${last10.length} settled, oldest → newest</div>`
@@ -223,23 +229,23 @@ function render(){renderFund();
   const ks=Object.keys(grp).sort((a,b)=>(order.indexOf(a)+99*(order.indexOf(a)<0))-(order.indexOf(b)+99*(order.indexOf(b)<0)));
   if(!ks.length)return`<div class="empty">No picks yet.</div>`;
   const mxn=Math.max(...ks.map(k=>grp[k].length));
-  return ks.map(k=>{const s=stats(grp[k]);return `<div class="row"><div class="lbl">${lab(k)}</div><div class="trk"><div class="fill" style="width:${grp[k].length/mxn*100}%"></div></div><div class="num">${s.n?`${s.W}-${s.L}-${s.P} <span class="${cls(s.profit)}">${fu(s.profit)}</span>`:`${s.pend} pend`}</div></div>`}).join("")}
+  return ks.map(k=>{const s=stats(grp[k]);return `<div class="row"><div class="lbl">${lab(k)}</div><div class="trk"><div class="fill" style="width:${grp[k].length/mxn*100}%"></div></div><div class="num">${s.n?`${s.W}-${s.L}-${s.P} <span class="${cls(s.profit)}">${fm(s.profit)}</span>`:`${s.pend} pend`}</div></div>`}).join("")}
  $("bysport").innerHTML=bars("sport",k=>(ICON[k]||"")+" "+(SPORT[k]||k),["nfl","ncaaf","nba","tennis","parlay"]);
  $("byconf").innerHTML=bars("conf",k=>k,["High","Medium","—"]);
  // best & worst
  const ranked=settled.filter(p=>p.profit!=null).sort((a,b)=>b.profit-a.profit||((b.clv||0)-(a.clv||0)));
- const item=(p,t)=>`<div class="it"><div>${t} <b>${esc(p.bet)}</b><div class="mut">${esc(p.game)} · ${fp(p.price)}</div></div><div class="mono ${cls(p.profit)}">${fu(p.profit)}u</div></div>`;
+ const item=(p,t)=>`<div class="it"><div>${t} <b>${esc(p.bet)}</b><div class="mut">${esc(p.game)} · ${fp(p.price)}</div></div><div class="mono ${cls(p.profit)}">${fm(p.profit)}</div></div>`;
  $("bw").innerHTML=ranked.length?ranked.slice(0,2).map(p=>item(p,"🏆")).join("")+(ranked.length>2?ranked.slice(-2).reverse().filter(p=>p.profit<0).map(p=>item(p,"💀")).join(""):"")
   :`<div class="empty"><div class="big">🏆</div>Hall of fame and hall of shame<br>open after the first result.</div>`;
  // table
  const rows=[...ps].sort((a,b)=>(b.start||"").localeCompare(a.start||""));
- $("tbl").innerHTML=rows.length?`<table><thead><tr><th>Pick</th><th>When (ET)</th><th>Price</th><th>Min</th><th>Close</th><th>CLV</th><th>Conf</th><th>Result</th><th>Units</th></tr></thead><tbody>${rows.map(p=>{
+ $("tbl").innerHTML=rows.length?`<table><thead><tr><th>Pick</th><th>When (ET)</th><th>Price</th><th>Min</th><th>Close</th><th>CLV</th><th>Conf</th><th>Result</th><th>P&amp;L</th></tr></thead><tbody>${rows.map(p=>{
   const pend=p.result==="PENDING";
   return `<tr class="${pend?"pend":""}"><td class="main">${ICON[p.sport]||""} <b>${esc(p.bet)}</b> ${p.vskc?'<span class="badge b-kc">vs KC</span>':""} <span class="badge b-${esc(p.source)}">${esc(p.source)}</span><div class="mut">${esc(p.game)} · ${esc(SPORT[p.sport]||p.sport)} · ${esc(p.book)}</div>${pend?`<div class="sc" data-pid="${esc(p.id)}">${scoreHTML(p.id)}</div>`:""}</td>
   <td data-l="When"><span class="val">${esc(when(p.start,p.start_iso))}</span></td><td data-l="Price" class="mono"><span class="val">${fp(p.price)}</span></td><td data-l="Min" class="mono"><span class="val">${fp(p.min)}</span></td>
   <td data-l="Close" class="mono"><span class="val">${fp(p.close)}</span></td><td data-l="CLV" class="mono"><span class="val ${cls(p.clv)}">${p.clv==null?"—":(p.clv>0?"+":"")+p.clv.toFixed(1)}</span></td>
   <td data-l="Conf"><span class="val">${esc(p.conf)}</span></td><td data-l="Result"><span class="val"><span class="r r-${p.result} ${pend?"pulse":""}">${pend?"PENDING":p.result}</span></span></td>
-  <td data-l="Units" class="mono"><span class="val ${cls(p.profit)}">${p.profit==null?p.units+"u at risk":fu(p.profit)}</span></td></tr>`}).join("")}</tbody></table>`
+  <td data-l="P&amp;L" class="mono"><span class="val ${cls(p.profit)}">${p.profit==null?`$${(p.units*PER_UNIT).toFixed(0)} at risk`:fm(p.profit)}</span></td></tr>`}).join("")}</tbody></table>`
   :`<div class="empty"><div class="big">📋</div>No picks in this view yet.</div>`;
 }
 
@@ -264,7 +270,7 @@ function renderPin(){
  if(!cps.length){$("pin").innerHTML=`<div class="pin"><div class="ph"><h2>📌 This week's card</h2><span class="mut">week of ${esc(fmtWk(thisWk))}</span></div>${nextNote}</div>`;return}
  const isThis=wk===thisWk, st=stats(cps);
  const head=isThis?"📌 This week's card":"📌 Last card";
- const sub=`week of ${esc(fmtWk(wk))} · ${cps.length} pick${cps.length>1?"s":""}`+(st.n?` · ${st.W}-${st.L}-${st.P} <span class="${cls(st.profit)}">${fu(st.profit)}u</span>`:"");
+ const sub=`week of ${esc(fmtWk(wk))} · ${cps.length} pick${cps.length>1?"s":""}`+(st.n?` · ${st.W}-${st.L}-${st.P} <span class="${cls(st.profit)}">${fm(st.profit)}</span>`:"");
  $("pin").innerHTML=`<div class="pin"><div class="ph"><h2>${head}</h2><span class="mut">${sub}</span></div><div class="cards">${cps.map(p=>{const s=cdState(p);const al=p.source==="alert";
   return `<div class="cp ${al?"isalert":""}"><div class="top"><span class="rk">${al?"⚡ ALERT":"🎟️ CARD"} · ${ICON[p.sport]||""} ${esc(SPORT[p.sport]||p.sport)}</span><span class="cd ${s.c}" data-pid="${esc(p.id)}">${s.t}</span></div>
   <div class="bt">${esc(p.bet)} ${p.vskc?'<span class="badge b-kc">vs KC</span>':""}</div>
@@ -319,12 +325,12 @@ function renderPvP(){const d=stats(DATA.filter(DESK)),s=stats(DATA.filter(p=>p.s
  const tot=DATA.length;
  if(!tot){$("pvp").innerHTML=`<div class="empty"><div class="big">⚖️</div>Once the desk plays some picks and passes on others,<br>this shows which pile is winning.</div>`;return}
  const diff=d.profit-s.profit,any=d.n+s.n>0;
- const side=(nm,st,lead)=>`<div class="side ${lead?"lead":""}"><div class="nm">${nm}</div><div class="rec">${st.W}-${st.L}-${st.P}</div><div class="u ${cls(st.profit)}">${st.n?fu(st.profit)+"u":"0.00u"}</div><div class="ln">CLV ${st.avgclv==null?"—":fu2(st.avgclv)}</div><div class="ln">${st.pend} pending</div></div>`;
+ const side=(nm,st,lead)=>`<div class="side ${lead?"lead":""}"><div class="nm">${nm}</div><div class="rec">${st.W}-${st.L}-${st.P}</div><div class="u ${cls(st.profit)}">${st.n?fm(st.profit):"$0.00"}</div><div class="ln">CLV ${st.avgclv==null?"—":fu2(st.avgclv)}</div><div class="ln">${st.pend} pending</div></div>`;
  let v;
  if(!any)v=`⏳ No results yet. ${d.pend+s.pend} pick${d.pend+s.pend===1?"":"s"} waiting on games.`;
  else if(Math.abs(diff)<0.005)v="🤝 Dead even so far";
- else if(diff>0)v=`🏈 The desk is winning by <span class="pos">+${diff.toFixed(2)}u</span>`;
- else v=`👀 Your skips are winning by <span class="neg">+${(-diff).toFixed(2)}u</span>`;
+ else if(diff>0)v=`🏈 The desk is winning by <span class="pos">${fm(diff)}</span>`;
+ else v=`👀 Your skips are winning by <span class="neg">${fm(-diff)}</span>`;
  $("pvp").innerHTML=`<div class="vs">${side("Played · desk",d,any&&diff>0.005)}<div class="mid">VS</div>${side("Passed · skips",s,any&&diff<-0.005)}</div><div class="verdict">${v}</div>`}
 
 // ---------- 4. bot leaderboard ----------
@@ -341,12 +347,12 @@ function renderLB(){
  $("lb").innerHTML=rows.map(r=>{const md=anyRes&&r.score>0&&place<3?["🥇","🥈","🥉"][place++]:r.ic;
   const sub=r.cr.length?`${r.cr.length} credited · ${r.dk.length} played · ${r.ps.length} ${r.nm==="Skeptic"?"cut":"passed"}`:"no credits yet";
   let rt;
-  if(r.nm==="Skeptic")rt=`${r.set?`${r.good}/${r.set}`:"—"} <span class="mut">cuts that would've lost</span><div class="${cls(r.saved)}">${r.set?fu(r.saved)+"u saved":""}</div>`;
-  else rt=r.st.n?`${r.st.W}-${r.st.L}-${r.st.P}<div class="${cls(r.st.profit)}">${fu(r.st.profit)}u</div>`:(r.dk.length?`<span class="mut">${r.dk.length} pending</span>`:`<span class="mut">—</span>`);
+  if(r.nm==="Skeptic")rt=`${r.set?`${r.good}/${r.set}`:"—"} <span class="mut">cuts that would've lost</span><div class="${cls(r.saved)}">${r.set?fm(r.saved)+" saved":""}</div>`;
+  else rt=r.st.n?`${r.st.W}-${r.st.L}-${r.st.P}<div class="${cls(r.st.profit)}">${fm(r.st.profit)}</div>`:(r.dk.length?`<span class="mut">${r.dk.length} pending</span>`:`<span class="mut">—</span>`);
   if(r.nm==="Skeptic"&&!r.set){const pn=r.ps.filter(p=>p.result==="PENDING").length;rt=pn?`<span class="mut">${pn} cut${pn>1?"s":""} pending</span>`:`<span class="mut">—</span>`}
   return `<div class="it"><div class="md">${md}</div><div><div class="nm">${esc(NICK[r.nm]||r.nm)}</div><div class="mut">${sub}</div></div><div class="rt">${rt}</div></div>`}).join("")}
 // ---------- auto-update (home-screen apps have no pull-to-refresh) ----------
-const BUILD_ID="Sun Oct 11, 2026 1:17 PM ET";
+const BUILD_ID="Sun Oct 11, 2026 1:23 PM ET";
 function hardReload(){location.replace(location.pathname+"?r="+Date.now()+location.hash)}
 async function checkUpdate(){try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/const BUILD_ID="([^"]*)"/);if(m&&m[1]!==BUILD_ID)hardReload()}catch(e){}}
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")checkUpdate()});
