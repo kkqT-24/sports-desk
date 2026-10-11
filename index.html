@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="KBets">
 <meta name="application-name" content="KBets">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1791697781">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1791697799">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="manifest" href="manifest.webmanifest">
@@ -27,8 +27,8 @@ h1 span{color:var(--gold)}
 .sub{color:var(--mut);font-size:12.5px}
 .samplebar{background:repeating-linear-gradient(45deg,#B8102C,#B8102C 12px,#000 12px,#000 24px);color:#000;font-weight:900;text-align:center;padding:8px;letter-spacing:2px;margin-bottom:12px;border-radius:8px}
 .samplebar b{background:#fff;padding:2px 10px}
-.tabs{display:flex;gap:6px;margin:14px 0;flex-wrap:wrap}
-.tab{background:var(--panel);border:1px solid var(--line);color:var(--mut);padding:8px 14px;border-radius:999px;cursor:pointer;font-weight:700;font-size:13px}
+.tabs{display:flex;gap:6px;margin:12px 0;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}.tabs::-webkit-scrollbar{display:none}
+.tab{background:var(--panel);border:1px solid var(--line);color:var(--mut);padding:7px 11px;border-radius:999px;cursor:pointer;font-weight:700;font-size:12.5px;white-space:nowrap;flex:none}
 .tab.on{background:linear-gradient(135deg,#B8102C,#E31837);color:#fff;border-color:#FFB81C;box-shadow:0 0 14px #E3183766}
 .tab .ct{opacity:.75;font-weight:600;margin-left:4px}
 .board{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
@@ -154,7 +154,7 @@ svg text{font-family:Menlo,Consolas,monospace}
 const DATA=[{"id": "rush-1", "week": "2026-10-05", "posted": "2026-10-10", "sport": "nfl", "game": "DET@ARI", "start": "2026-10-11 16:25", "bet": "UNDER 54.5", "market": "total", "book": "DK", "price": -105.0, "min": null, "conf": "\u2014", "source": "passed", "vskc": false, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "clv": null, "notes": "Shadow-tracked; cut from rush set 2026-10-10 (nfl-high-total-unders: no edge at the price)", "start_iso": "2026-10-11T16:25:00-04:00", "credit": ["Line Scout"]}, {"id": "rush-2", "week": "2026-10-05", "posted": "2026-10-10", "sport": "nfl", "game": "BUF@LAR", "start": "2026-10-12 20:15", "bet": "UNDER 54.5", "market": "total", "book": "DK", "price": -102.0, "min": null, "conf": "\u2014", "source": "passed", "vskc": false, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "clv": null, "notes": "Shadow-tracked; cut from rush set 2026-10-10 (nfl-high-total-unders)", "start_iso": "2026-10-12T20:15:00-04:00", "credit": ["Line Scout"]}, {"id": "rush-3", "week": "2026-10-05", "posted": "2026-10-10", "sport": "nfl", "game": "LAC@KC", "start": "2026-10-18 16:25", "bet": "LAC +7.5", "market": "spread", "book": "LowVig", "price": 100.0, "min": null, "conf": "\u2014", "source": "passed", "vskc": true, "close": null, "result": "PENDING", "units": 1.0, "profit": null, "clv": null, "notes": "Shadow-tracked; cut from rush set 2026-10-10 (nfl-fade-home-team-off-bye: Skeptic objection unanswered)", "start_iso": "2026-10-18T16:25:00-04:00", "credit": ["Line Scout", "Skeptic"]}], SAMPLE=false;
 const SPORT={nfl:"NFL",ncaaf:"CFB",nba:"NBA",tennis:"Tennis",parlay:"Parlay"};
 const ICON={nfl:"🏈",ncaaf:"🏈",nba:"🏀",tennis:"🎾",parlay:"🎟️"};
-const TABS=[["desk","Desk picks",p=>p.source!=="passed"],["passed","Passed",p=>p.source==="passed"],["all","All",p=>true]];
+const TABS=[["desk","Picks",p=>p.source!=="passed"],["passed","Passed",p=>p.source==="passed"],["all","All",p=>true]];
 let cur=["desk","passed","all","lb"].includes(location.hash.slice(1))?location.hash.slice(1):"desk";
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
