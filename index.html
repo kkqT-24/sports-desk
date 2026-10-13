@@ -8,15 +8,15 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="KBets">
 <meta name="application-name" content="KBets">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1791908826">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1791909805">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="manifest" href="manifest.webmanifest">
 <style>
-:root{--bg:#000000;--panel:#0e0e10;--panel2:#141416;--line:#26262b;--top:linear-gradient(180deg,#6d28d9b3 0,#4c1d9566 14px,#0e0e1000 46px);--pur:#7c3aed;--pur2:#c026d3;--pg:linear-gradient(135deg,#312e81,#6d28d9 55%,#8b5cf6);--red:#E31837;--gold:#F4F4F5;--txt:#eef1f7;--mut:#9a9a9a;--grn:#F4F4F5;--los:#ff4d6a}
+:root{--bg:#000000;--panel:#0e0e10;--panel2:#141416;--line:#26262b;--top:linear-gradient(180deg,#6d28d9b3 0,#4c1d9566 14px,#0e0e1000 46px);--pur:#7c3aed;--pur2:#c026d3;--pg:linear-gradient(135deg,#312e81,#6d28d9 55%,#8b5cf6);--red:#8b5cf6;--gold:#F4F4F5;--txt:#eef1f7;--mut:#9a9a9a;--grn:#F4F4F5;--los:#e8909f}
 .fund{background:var(--top),var(--panel);border:1px solid #3a2a55;border-radius:14px;padding:12px 14px;margin:10px 0 12px;box-shadow:0 0 18px #7c3aed33}.fund .row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.fund .t{font-weight:800;letter-spacing:1px;font-size:13px;color:var(--mut);text-transform:uppercase}.fund .amt{font:800 20px ui-monospace,Menlo,monospace;color:#fff}.fund .trk{height:14px;background:#0a0a0a;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-top:8px}.fund .trk{position:relative}.fund .fill{height:100%;background:linear-gradient(90deg,#6d28d9,#a855f7 70%,#f5f3ff);border-radius:8px;min-width:2px;width:0;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}.fund .ms{position:absolute;top:-1px;bottom:-1px;width:2px;background:#ffffff55}.fund .mss{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}.fund .m{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:999px;border:1px solid #4c3a6b;color:#a1a1aa;background:#141416}.fund .m.hit{color:#fff;background:linear-gradient(135deg,#6d28d9,#9333ea);border-color:#a78bfa}.fund .m.hit:before{content:"";width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}.fund .mut{font-size:12px;margin-top:6px}
 .rf{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--panel2);color:var(--gold);font-size:20px;font-weight:800;cursor:pointer}.rf.spin{animation:sp .8s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
-.ptr{position:fixed;left:50%;top:0;transform:translate(-50%,-60px);width:40px;height:40px;border-radius:50%;background:var(--panel2);border:1px solid var(--line);color:var(--gold);display:grid;place-items:center;font-size:20px;font-weight:800;z-index:50;transition:transform .15s;pointer-events:none;padding-top:env(safe-area-inset-top)}.ptr.go{color:#fff;background:var(--red)}.ptr.spin{animation:sp .8s linear infinite}
+.ptr{position:fixed;left:50%;top:calc(env(safe-area-inset-top) + 6px);width:28px;height:28px;margin-left:-14px;border-radius:50%;background:#141416;border:1px solid rgba(255,255,255,.08);display:grid;place-items:center;z-index:50;pointer-events:none;opacity:0;transform:translateY(-44px);transition:transform .2s ease,opacity .2s ease;will-change:transform,opacity}.ptr svg{display:block;width:20px;height:20px}.ptr.spin svg{animation:sp .8s linear infinite}
 *{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
 body{background:linear-gradient(to bottom,#000 0,#000 calc(env(safe-area-inset-top) + 10px),rgba(0,0,0,0) calc(env(safe-area-inset-top) + 170px)) fixed,radial-gradient(700px 300px at 50% 0,#2a0d52 0%,#0a0612 45%,#000 70%) fixed,#000}
 .wrap{max-width:1100px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 18px) 14px 40px}
@@ -25,7 +25,7 @@ header{display:flex;align-items:center;gap:12px;margin-bottom:6px}.logo{flex:non
 h1{margin:0;font-size:26px;letter-spacing:3px;font-weight:900;text-transform:uppercase}
 h1 span{color:#c4b5fd}
 .sub{color:var(--mut);font-size:12.5px}
-.samplebar{background:repeating-linear-gradient(45deg,#B8102C,#B8102C 12px,#000 12px,#000 24px);color:#000;font-weight:900;text-align:center;padding:8px;letter-spacing:2px;margin-bottom:12px;border-radius:8px}
+.samplebar{background:repeating-linear-gradient(45deg,#6d28d9,#6d28d9 12px,#000 12px,#000 24px);color:#000;font-weight:900;text-align:center;padding:8px;letter-spacing:2px;margin-bottom:12px;border-radius:8px}
 .samplebar b{background:#fff;padding:2px 10px}
 .tabs{display:flex;gap:4px;margin:12px -14px;padding:0 6px;position:relative;overflow:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch}.tabs::-webkit-scrollbar{display:none}
 .tab{background:var(--panel);border:1px solid var(--line);color:var(--mut);padding:8px 2px;min-width:0;transition:background .2s,color .2s,transform .12s,box-shadow .2s;border-radius:999px;cursor:pointer;font-weight:700;font-size:12px;white-space:nowrap;flex:1 1 0;text-align:center;overflow:hidden;text-overflow:clip}
@@ -37,7 +37,7 @@ h1 span{color:#c4b5fd}
 .tile .k{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mut);font-weight:700}
 .tile .v{font-family:"SF Mono",Menlo,Consolas,"Courier New",monospace;font-size:30px;font-weight:800;margin-top:4px;color:var(--gold);text-shadow:0 0 14px #ffffff55;white-space:nowrap}
 .tile .s{font-size:11.5px;color:var(--mut);margin-top:2px}
-.pos{color:var(--grn)!important;text-shadow:0 0 16px #F4F4F566!important}.neg{color:var(--los)!important;text-shadow:0 0 14px #ff4d6a55!important}
+.pos{color:var(--grn)!important;text-shadow:0 0 16px #F4F4F566!important}.neg{color:var(--los)!important;text-shadow:none!important}
 .grid2{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-top:12px}
 .grid2.even{grid-template-columns:1fr 1fr}
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px}
@@ -120,11 +120,11 @@ svg text{font-family:Menlo,Consolas,monospace}
 *{-webkit-tap-highlight-color:transparent}
 .view{animation:fadeup .32s ease both}@keyframes fadeup{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .stag>*{animation:fadeup .4s ease both}.stag>*:nth-child(2){animation-delay:.04s}.stag>*:nth-child(3){animation-delay:.08s}.stag>*:nth-child(4){animation-delay:.12s}.stag>*:nth-child(5){animation-delay:.16s}.stag>*:nth-child(6){animation-delay:.2s}
-.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:6px;vertical-align:middle;box-shadow:0 0 0 0 #E31837aa;animation:ping 1.4s ease-out infinite}@keyframes ping{to{box-shadow:0 0 0 9px #E3183700}}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:6px;vertical-align:middle;box-shadow:0 0 0 0 #8b5cf6aa;animation:ping 1.4s ease-out infinite}@keyframes ping{to{box-shadow:0 0 0 9px #8b5cf600}}
 .lb .it{cursor:pointer;border-radius:10px;padding:8px 6px}.lb .go{color:var(--mut);font-size:12px}
 .wk .st{background:var(--top),var(--panel2)!important;display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px}
 .wk .dy{font-weight:900;color:#c4b5fd;font-size:13px;letter-spacing:1px}.wk .tt{font-weight:800}.wk .ss{font-size:11px;font-weight:900;padding:3px 9px;border-radius:999px;white-space:nowrap}
-.ss.done{background:var(--gold);color:#000}.ss.up{background:#2a1a40;color:#c4b5fd}.ss.due{background:var(--red);color:#fff}.ss.late{background:#3a0d16;color:#ff4d6a;border:1px solid #ff4d6a}
+.ss.done{background:var(--gold);color:#000}.ss.up{background:#2a1a40;color:#c4b5fd}.ss.due{background:var(--red);color:#fff}.ss.late{background:#1c1c20;color:#e8909f;border:1px solid rgba(255,255,255,.08)}
 .sheet{position:fixed;inset:0;z-index:60;background:#000b;display:flex;align-items:flex-end;justify-content:center;animation:fade .2s ease both;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}@keyframes fade{from{opacity:0}}
 .sheet .in{width:100%;max-width:560px;max-height:92vh;overflow:auto;background:linear-gradient(180deg,#5b21b6 0,#2e1065 40px,#0b0b0d 120px);border:1px solid #3a2a55;border-bottom:0;border-radius:20px 20px 0 0;padding:16px 14px calc(20px + env(safe-area-inset-bottom));animation:up .32s cubic-bezier(.2,.8,.2,1) both}@keyframes up{from{transform:translateY(100%)}}
 .bot{display:flex;align-items:center;gap:12px;margin-bottom:12px}.bot .em{font-size:40px;width:60px;height:60px;display:grid;place-items:center;border-radius:16px;background:var(--pg);box-shadow:0 0 18px #7c3aed88}.bot h2{margin:0;font-size:22px}.bot .rl{color:var(--mut);font-size:12.5px}
@@ -223,9 +223,9 @@ body{position:relative;z-index:0}
 .rm #toast{transition:none}
 </style></head><body><div id="aurora" aria-hidden="true"><i></i><i></i></div><div id="grain" aria-hidden="true"></div><div class="wrap">
 <div id="samplebar"></div>
-<div class="ptr" id="ptr">↻</div>
+<div class="ptr" id="ptr" aria-hidden="true"><svg viewBox="0 0 20 20"><defs><linearGradient id="pg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f46e5"/><stop offset=".5" stop-color="#8b5cf6"/><stop offset="1" stop-color="#ddd6fe"/></linearGradient></defs><circle cx="10" cy="10" r="7.5" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="2.2"/><circle cx="10" cy="10" r="7.5" fill="none" stroke="url(#pg)" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="33 47"/></svg></div>
 <header><div style="flex:1"><h1>Kent's Sports <span>Desk</span></h1>
-<div class="sub">Every pick the desk makes · $20 a pick, flat · updated Tue Oct 13, 2026 12:27 PM ET</div></div></header>
+<div class="sub">Every pick the desk makes · $20 a pick, flat · updated Tue Oct 13, 2026 12:43 PM ET</div></div></header>
 <div class="fund" id="fund"></div>
 <div id="pin"></div>
 <div class="tabs" id="tabs"></div>
@@ -505,7 +505,7 @@ function renderWeek(){const now=Date.now();let nextSet=0;
  const row=s=>{const due=Date.parse(s.due);let c,t;if(s.done){c="done";t="Done"}else if(now>due){c="late";t="Overdue"}else if(due-now<36*3600e3){c="due";t="Due soon"}else{c="up";t="Upcoming"}
   const dl=new Date(due).toLocaleString("en-US",{weekday:"short",hour:"numeric",minute:"2-digit",timeZone:TZ});
   return `<div class="st${!s.done&&!nextSet&&(nextSet=1)?" next":""}"><div class="dy">${esc(s.day)}</div><div><div class="tt">${esc(s.t)}</div><div class="mut">${esc(s.d)} · due ${esc(dl)} ET</div></div><span class="ss ${c}">${t}</span></div>`};
- $("weekview").innerHTML=`<div class="card wk"><h3>This week · week of ${esc(fmtWk(WEEK.week))}</h3><div class="stag">${WEEK.steps.map(row).join("")}</div><div class="mut">Status comes from the files in the week folder at build time (${esc("Tue Oct 13, 2026 12:27 PM ET")}).</div></div>`}
+ $("weekview").innerHTML=`<div class="card wk"><h3>This week · week of ${esc(fmtWk(WEEK.week))}</h3><div class="stag">${WEEK.steps.map(row).join("")}</div><div class="mut">Status comes from the files in the week folder at build time (${esc("Tue Oct 13, 2026 12:43 PM ET")}).</div></div>`}
 
 // ---------- haptics (vibrate where supported; iOS 18+ switch-checkbox trick) ----------
 function haptic(){try{navigator.vibrate&&navigator.vibrate(10)}catch(e){}try{const l=document.getElementById("hpl");if(l&&/iP(hone|ad|od)/.test(navigator.userAgent))l.click()}catch(e){}}
@@ -563,7 +563,7 @@ function celebrate(){if(STILL&&!/[?&]celebrate\b/.test(location.search))return;i
  toast(`<b>${esc(NICK[who]||who)} hit:</b> ${esc(shortBet(p.bet,p.game))} <span class="pos">${fm(p.profit)}</span>${fresh.length>1?` <span class="mut">+${fresh.length-1} more</span>`:""}`);
  if(!matchMedia("(prefers-reduced-motion: reduce)").matches)confetti()}
 // ---------- auto-update (home-screen apps have no pull-to-refresh) ----------
-const BUILD_ID="Tue Oct 13, 2026 12:27 PM ET";
+const BUILD_ID="Tue Oct 13, 2026 12:43 PM ET";
 function hardReload(){location.replace(location.pathname+"?r="+Date.now()+location.hash)}
 async function checkUpdate(){try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/const BUILD_ID="([^"]*)"/);if(m&&m[1]!==BUILD_ID)hardReload()}catch(e){}}
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")checkUpdate()});
@@ -573,12 +573,12 @@ render();
 if(H0.startsWith("bot="))openBot(H0.slice(4));
 sharePreview();celebrate();
 // ---------- pull to refresh ----------
-(function(){const el=document.getElementById("ptr");let y0=null,dy=0;const MAX=110,TRIG=75;
+(function(){const el=document.getElementById("ptr"),sv=el.querySelector("svg");let y0=null,dy=0;const MAX=110,TRIG=70;
+ const set=(d,o)=>{el.style.transform=`translateY(${d-44}px)`;el.style.opacity=o;sv.style.transform=`rotate(${d*5}deg)`};
  window.addEventListener("touchstart",e=>{if(window.scrollY<=0){y0=e.touches[0].clientY;dy=0;el.style.transition="none"}else y0=null},{passive:true});
- window.addEventListener("touchmove",e=>{if(y0===null)return;dy=e.touches[0].clientY-y0;if(dy<=0){el.style.transform="translate(-50%,-60px)";return}
-  const d=Math.min(MAX,dy*0.5);el.style.transform=`translate(-50%,${d-20}px) rotate(${d*4}deg)`;el.classList.toggle("go",d>=TRIG*0.5+20)},{passive:true});
+ window.addEventListener("touchmove",e=>{if(y0===null)return;dy=e.touches[0].clientY-y0;if(dy<=0){set(0,0);return}const d=Math.min(MAX,dy*0.5);set(d,Math.min(1,d/TRIG))},{passive:true});
  window.addEventListener("touchend",()=>{if(y0===null)return;el.style.transition="";const d=Math.min(MAX,dy*0.5);
-  if(d>=TRIG*0.5+20){el.style.transform="translate(-50%,40px)";el.classList.add("spin");hardReload()}else{el.style.transform="translate(-50%,-60px)";el.classList.remove("go")}y0=null},{passive:true});
+  if(d>=TRIG){sv.style.transform="";el.style.transform="translateY(40px)";el.style.opacity=1;el.classList.add("spin");haptic();setTimeout(hardReload,250)}else{set(0,0)}y0=null},{passive:true});
 })();
 setInterval(tick,1000);
 refreshScores();
