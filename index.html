@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="KBets">
 <meta name="application-name" content="KBets">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1791907521">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1791907814">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="manifest" href="manifest.webmanifest">
@@ -200,7 +200,7 @@ body{position:relative;z-index:0}
 <div id="samplebar"></div>
 <div class="ptr" id="ptr">↻</div>
 <header><div style="flex:1"><h1>Kent's Sports <span>Desk</span></h1>
-<div class="sub">Every pick the desk makes · $20 a pick, flat · updated Tue Oct 13, 2026 12:05 PM ET</div></div></header>
+<div class="sub">Every pick the desk makes · $20 a pick, flat · updated Tue Oct 13, 2026 12:10 PM ET</div></div></header>
 <div class="fund" id="fund"></div>
 <div id="pin"></div>
 <div class="tabs" id="tabs"></div>
@@ -274,7 +274,7 @@ function render(){if(!fundDone){renderFund();fundDone=true}
  $("samplebar").innerHTML=SAMPLE?'<div class="samplebar"><b>SAMPLE DATA · NOT REAL PICKS · LAYOUT TEST ONLY</b></div>':"";
  $("pin").style.display=isNow||isWk?"none":"";renderPin();renderPvP();renderLB();renderWeek();
  const tb=t=>`<button class="tab ${t[0]===cur?"on":""}" data-t="${t[0]}">${t[1]}<span class="ct">${DATA.filter(t[2]).length}</span></button>`;
- $("tabs").innerHTML=tb(TABS[0])+`<button class="tab ${isWk?"on":""}" data-t="week">Week</button>`+TABS.slice(1).map(tb).join("")+`<button class="tab ${isLB?"on":""}" data-t="lb">Top</button>`;
+ $("tabs").innerHTML=tb(TABS[0])+`<button class="tab ${isWk?"on":""}" data-t="week">Week</button>`+TABS.slice(1).map(tb).join("")+`<button class="tab ${isLB?"on":""}" data-t="lb">Board</button>`;
  document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{cur=b.dataset.t;history.replaceState(null,"","#"+cur);render()});
  const settled=ps.filter(p=>p.result!=="PENDING").sort((a,b)=>(a.start||"").localeCompare(b.start||""));
  $("board").classList.add("stag");
@@ -433,20 +433,12 @@ function renderPvP(){const d=stats(DATA.filter(DESK)),s=stats(DATA.filter(p=>p.s
 const BOTS=[["Kent","👑"],["Line Scout","🐐"],["Prop Scout","✨"],["Skeptic","🐍"]];
 const NICK={"Line Scout":"Mahomes","Prop Scout":"Tina","Skeptic":"Kobe"};
 function renderLB(){
- const rows=BOTS.map(([nm,ic])=>{const cr=DATA.filter(p=>(p.credit||[]).includes(nm)),dk=cr.filter(DESK),ps=cr.filter(p=>p.source==="passed"),st=stats(dk);
-  const r={nm,ic,cr,dk,ps,st,score:st.profit};
-  if(nm==="Skeptic"){const set=ps.filter(p=>p.result==="W"||p.result==="L");r.good=ps.filter(p=>p.result==="L").length;r.set=set.length;r.saved=-ps.reduce((a,p)=>a+(p.profit||0),0);r.score=r.saved+st.profit}
-  return r});
- if(!rows.some(r=>r.cr.length)){$("lb").innerHTML=`<div class="empty"><div class="big">🏅</div>Credits start rolling in with the first card.</div>`;return}
- rows.sort((a,b)=>b.score-a.score||b.cr.length-a.cr.length);
- const anyRes=rows.some(r=>r.st.n||r.set);let place=0;
- $("lb").innerHTML=rows.map(r=>{const md=anyRes&&r.score>0&&place<3?`<b style="color:#c4b5fd">#${++place}</b>`:r.ic;
-  const sub=r.cr.length?`${r.cr.length} credited · ${r.dk.length} played · ${r.ps.length} ${r.nm==="Skeptic"?"cut":"passed"}`:"no credits yet";
-  let rt;
-  if(r.nm==="Skeptic")rt=`${r.set?`${r.good}/${r.set}`:"—"} <span class="mut">cuts that would've lost</span><div class="${cls(r.saved)}">${r.set?fm(r.saved)+" saved":""}</div>`;
-  else rt=r.st.n?`${r.st.W}-${r.st.L}-${r.st.P}<div class="${cls(r.st.profit)}">${fm(r.st.profit)}</div>`:(r.dk.length?`<span class="mut">${r.dk.length} pending</span>`:`<span class="mut">—</span>`);
-  if(r.nm==="Skeptic"&&!r.set){const pn=r.ps.filter(p=>p.result==="PENDING").length;rt=pn?`<span class="mut">${pn} cut${pn>1?"s":""} pending</span>`:`<span class="mut">—</span>`}
-  return `<div class="it" data-bot="${esc(r.nm)}" role="button"><div class="md">${md}</div><div><div class="nm">${esc(NICK[r.nm]||r.nm)} ${r.ic}</div><div class="mut">${sub}</div></div><div class="rt">${rt}</div></div>`}).join("");
+ const rows=BOTS.map(([nm,ic])=>{const cr=DATA.filter(p=>(p.credit||[]).includes(nm)),st=stats(cr),pas=cr.filter(p=>p.source==="passed"&&p.result!=="PENDING").length;return{nm,ic,cr,st,pas,score:st.profit}});
+ if(!rows.some(r=>r.cr.length)){$("lb").innerHTML=`<div class="empty">Credits start rolling in with the first card.</div>`;return}
+ rows.sort((a,b)=>b.score-a.score||b.st.n-a.st.n||b.cr.length-a.cr.length);
+ $("lb").innerHTML=rows.map((r,i)=>{const sub=r.st.n?`${r.st.n} graded${r.pas?` · incl. ${r.pas} passed idea${r.pas>1?"s":""}`:""}${r.st.pend?` · ${r.st.pend} pending`:""}`:(r.st.pend?`${r.st.pend} pending`:"no picks yet");
+  const rt=r.st.n?`${r.st.W}-${r.st.L}-${r.st.P}<div class="${cls(r.st.profit)}">${fm(r.st.profit)}</div><div class="mut">${r.st.roi==null?"—":(r.st.roi>0?"+":"")+r.st.roi.toFixed(1)+"% ROI"}</div>`:`<span class="mut">—</span>`;
+  return `<div class="it" data-bot="${esc(r.nm)}" role="button"><div class="md"><b style="color:#c4b5fd">#${i+1}</b></div><div><div class="nm">${esc(NICK[r.nm]||r.nm)} ${r.ic}</div><div class="mut">${sub}</div></div><div class="rt">${rt}</div></div>`}).join("")+`<div class="mut" style="margin-top:8px">Every graded pick credited to each person at $${PER_UNIT} a pick, incl. passed (shadow-tracked) ideas. Same numbers as the profiles.</div>`;
  $("lb").querySelectorAll("[data-bot]").forEach(el=>el.onclick=()=>openBot(el.dataset.bot))}
 // ---------- streaks + badges (real picks.csv only) ----------
 function streakOf(ps){const se=ps.filter(p=>p.result==="W"||p.result==="L").sort((a,b)=>(a.start||"").localeCompare(b.start||""));let k="",n=0,bw=0,run=0;
@@ -486,9 +478,9 @@ function renderWeek(){const now=Date.now();let nextSet=0;
  const row=s=>{const due=Date.parse(s.due);let c,t;if(s.done){c="done";t="Done"}else if(now>due){c="late";t="Overdue"}else if(due-now<36*3600e3){c="due";t="Due soon"}else{c="up";t="Upcoming"}
   const dl=new Date(due).toLocaleString("en-US",{weekday:"short",hour:"numeric",minute:"2-digit",timeZone:TZ});
   return `<div class="st${!s.done&&!nextSet&&(nextSet=1)?" next":""}"><div class="dy">${esc(s.day)}</div><div><div class="tt">${esc(s.t)}</div><div class="mut">${esc(s.d)} · due ${esc(dl)} ET</div></div><span class="ss ${c}">${t}</span></div>`};
- $("weekview").innerHTML=`<div class="card wk"><h3>This week · week of ${esc(fmtWk(WEEK.week))}</h3><div class="stag">${WEEK.steps.map(row).join("")}</div><div class="mut">Status comes from the files in the week folder at build time (${esc("Tue Oct 13, 2026 12:05 PM ET")}).</div></div>`}
+ $("weekview").innerHTML=`<div class="card wk"><h3>This week · week of ${esc(fmtWk(WEEK.week))}</h3><div class="stag">${WEEK.steps.map(row).join("")}</div><div class="mut">Status comes from the files in the week folder at build time (${esc("Tue Oct 13, 2026 12:10 PM ET")}).</div></div>`}
 // ---------- auto-update (home-screen apps have no pull-to-refresh) ----------
-const BUILD_ID="Tue Oct 13, 2026 12:05 PM ET";
+const BUILD_ID="Tue Oct 13, 2026 12:10 PM ET";
 function hardReload(){location.replace(location.pathname+"?r="+Date.now()+location.hash)}
 async function checkUpdate(){try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/const BUILD_ID="([^"]*)"/);if(m&&m[1]!==BUILD_ID)hardReload()}catch(e){}}
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")checkUpdate()});
