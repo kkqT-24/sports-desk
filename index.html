@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="KBets">
 <meta name="application-name" content="KBets">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1791914396">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1791920593">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="manifest" href="manifest.webmanifest">
@@ -225,7 +225,7 @@ body{position:relative;z-index:0}
 <div id="samplebar"></div>
 <div class="ptr" id="ptr" aria-hidden="true"><svg viewBox="0 0 20 20"><defs><linearGradient id="pg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f46e5"/><stop offset=".5" stop-color="#8b5cf6"/><stop offset="1" stop-color="#ddd6fe"/></linearGradient></defs><circle cx="10" cy="10" r="7.5" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="2.2"/><circle cx="10" cy="10" r="7.5" fill="none" stroke="url(#pg)" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="33 47"/></svg></div>
 <header><div style="flex:1"><h1>Kent's Sports <span>Desk</span></h1>
-<div class="sub">Every pick the desk makes · $20 a pick, flat · updated Tue Oct 13, 2026 1:59 PM ET</div></div></header>
+<div class="sub">Every pick the desk makes · $20 a pick, flat · updated Tue Oct 13, 2026 3:43 PM ET</div></div></header>
 <div class="fund" id="fund"></div>
 <div id="pin"></div>
 <div class="tabs" id="tabs"></div>
@@ -301,7 +301,7 @@ function render(){if(!fundDone){renderFund();fundDone=true}
  $("samplebar").innerHTML=SAMPLE?'<div class="samplebar"><b>SAMPLE DATA · NOT REAL PICKS · LAYOUT TEST ONLY</b></div>':"";
  $("pin").style.display=isNow||isWk?"none":"";renderPin();renderPvP();renderLB();renderWeek();
  const tb=t=>`<button class="tab ${t[0]===cur?"on":""}" data-t="${t[0]}">${t[1]}<span class="ct">${DATA.filter(t[2]).length}</span></button>`;
- $("tabs").innerHTML=tb(TABS[0])+`<button class="tab ${isWk?"on":""}" data-t="week">Week</button>`+TABS.slice(1).map(tb).join("")+`<button class="tab ${isLB?"on":""}" data-t="lb">Board</button>`;
+ $("tabs").innerHTML=TABS.map(tb).join("")+`<button class="tab ${isWk?"on":""}" data-t="week">Week</button><button class="tab ${isLB?"on":""}" data-t="lb">Board</button>`;
  document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{haptic();cur=b.dataset.t;history.replaceState(null,"","#"+cur);render()});
  const settled=ps.filter(p=>p.result!=="PENDING").sort((a,b)=>(a.start||"").localeCompare(b.start||""));
  $("board").classList.add("stag");
@@ -505,7 +505,7 @@ function renderWeek(){const now=Date.now();let nextSet=0;
  const row=s=>{const due=Date.parse(s.due);let c,t;if(s.done){c="done";t="Done"}else if(now>due){c="late";t="Overdue"}else if(due-now<36*3600e3){c="due";t="Due soon"}else{c="up";t="Upcoming"}
   const dl=new Date(due).toLocaleString("en-US",{weekday:"short",hour:"numeric",minute:"2-digit",timeZone:TZ});
   return `<div class="st${!s.done&&!nextSet&&(nextSet=1)?" next":""}"><div class="dy">${esc(s.day)}</div><div><div class="tt">${esc(s.t)}</div><div class="mut">${esc(s.d)} · due ${esc(dl)} ET</div></div><span class="ss ${c}">${t}</span></div>`};
- $("weekview").innerHTML=`<div class="card wk"><h3>This week · week of ${esc(fmtWk(WEEK.week))}</h3><div class="stag">${WEEK.steps.map(row).join("")}</div><div class="mut">Status comes from the files in the week folder at build time (${esc("Tue Oct 13, 2026 1:59 PM ET")}).</div></div>`}
+ $("weekview").innerHTML=`<div class="card wk"><h3>This week · week of ${esc(fmtWk(WEEK.week))}</h3><div class="stag">${WEEK.steps.map(row).join("")}</div><div class="mut">Status comes from the files in the week folder at build time (${esc("Tue Oct 13, 2026 3:43 PM ET")}).</div></div>`}
 
 // ---------- haptics (vibrate where supported; iOS 18+ switch-checkbox trick) ----------
 function haptic(){try{navigator.vibrate&&navigator.vibrate(10)}catch(e){}try{const l=document.getElementById("hpl");if(l&&/iP(hone|ad|od)/.test(navigator.userAgent))l.click()}catch(e){}}
@@ -563,7 +563,7 @@ function celebrate(){if(STILL&&!/[?&]celebrate\b/.test(location.search))return;i
  toast(`<b>${esc(NICK[who]||who)} hit:</b> ${esc(shortBet(p.bet,p.game))} <span class="pos">${fm(p.profit)}</span>${fresh.length>1?` <span class="mut">+${fresh.length-1} more</span>`:""}`);
  if(!matchMedia("(prefers-reduced-motion: reduce)").matches)confetti()}
 // ---------- auto-update (home-screen apps have no pull-to-refresh) ----------
-const BUILD_ID="Tue Oct 13, 2026 1:59 PM ET";
+const BUILD_ID="Tue Oct 13, 2026 3:43 PM ET";
 function hardReload(){location.replace(location.pathname+"?r="+Date.now()+location.hash)}
 async function checkUpdate(){try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/const BUILD_ID="([^"]*)"/);if(m&&m[1]!==BUILD_ID)hardReload()}catch(e){}}
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")checkUpdate()});
