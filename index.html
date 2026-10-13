@@ -8,12 +8,12 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="KBets">
 <meta name="application-name" content="KBets">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1791908550">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1791908826">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="manifest" href="manifest.webmanifest">
 <style>
-:root{--bg:#000000;--panel:#0e0e10;--panel2:#141416;--line:#26262b;--top:linear-gradient(180deg,#6d28d9b3 0,#4c1d9566 14px,#0e0e1000 46px);--pur:#7c3aed;--pur2:#c026d3;--pg:linear-gradient(135deg,#2e1065,#6d28d9 55%,#a21caf);--red:#E31837;--gold:#F4F4F5;--txt:#eef1f7;--mut:#9a9a9a;--grn:#F4F4F5;--los:#ff4d6a}
+:root{--bg:#000000;--panel:#0e0e10;--panel2:#141416;--line:#26262b;--top:linear-gradient(180deg,#6d28d9b3 0,#4c1d9566 14px,#0e0e1000 46px);--pur:#7c3aed;--pur2:#c026d3;--pg:linear-gradient(135deg,#312e81,#6d28d9 55%,#8b5cf6);--red:#E31837;--gold:#F4F4F5;--txt:#eef1f7;--mut:#9a9a9a;--grn:#F4F4F5;--los:#ff4d6a}
 .fund{background:var(--top),var(--panel);border:1px solid #3a2a55;border-radius:14px;padding:12px 14px;margin:10px 0 12px;box-shadow:0 0 18px #7c3aed33}.fund .row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.fund .t{font-weight:800;letter-spacing:1px;font-size:13px;color:var(--mut);text-transform:uppercase}.fund .amt{font:800 20px ui-monospace,Menlo,monospace;color:#fff}.fund .trk{height:14px;background:#0a0a0a;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-top:8px}.fund .trk{position:relative}.fund .fill{height:100%;background:linear-gradient(90deg,#6d28d9,#a855f7 70%,#f5f3ff);border-radius:8px;min-width:2px;width:0;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}.fund .ms{position:absolute;top:-1px;bottom:-1px;width:2px;background:#ffffff55}.fund .mss{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}.fund .m{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:999px;border:1px solid #4c3a6b;color:#a1a1aa;background:#141416}.fund .m.hit{color:#fff;background:linear-gradient(135deg,#6d28d9,#9333ea);border-color:#a78bfa}.fund .m.hit:before{content:"";width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}.fund .mut{font-size:12px;margin-top:6px}
 .rf{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--panel2);color:var(--gold);font-size:20px;font-weight:800;cursor:pointer}.rf.spin{animation:sp .8s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
 .ptr{position:fixed;left:50%;top:0;transform:translate(-50%,-60px);width:40px;height:40px;border-radius:50%;background:var(--panel2);border:1px solid var(--line);color:var(--gold);display:grid;place-items:center;font-size:20px;font-weight:800;z-index:50;transition:transform .15s;pointer-events:none;padding-top:env(safe-area-inset-top)}.ptr.go{color:#fff;background:var(--red)}.ptr.spin{animation:sp .8s linear infinite}
@@ -56,7 +56,7 @@ h1 span{color:#c4b5fd}
 .bars .row{display:grid;grid-template-columns:70px 1fr 80px;gap:8px;align-items:center;margin:7px 0;font-size:13px}
 .bars .lbl{font-weight:700;text-transform:uppercase;font-size:12px}
 .bars .trk{height:10px;background:#0a0a0a;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
-.bars .fill{height:100%;background:linear-gradient(90deg,#6d28d9,#d946ef)}
+.bars .fill{height:100%;background:linear-gradient(90deg,#5b21b6,#a78bfa)}
 .draw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.1s ease forwards}@keyframes draw{to{stroke-dashoffset:0}}
 .bars .num{text-align:right;font-family:Menlo,Consolas,monospace;font-size:12px}
 .bw .it{display:flex;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:13px}
@@ -175,7 +175,7 @@ td.emp .val{visibility:hidden}
 #aurora i{position:absolute;width:520px;height:520px;border-radius:50%;opacity:.22;will-change:transform}
 #aurora i:nth-child(1){left:-140px;top:-260px;background:radial-gradient(circle,#7c3aed 0,#7c3aed00 65%);animation:drift1 26s ease-in-out infinite alternate}
 #aurora:after{content:"";position:absolute;left:30%;top:-300px;width:460px;height:460px;border-radius:50%;opacity:.12;background:radial-gradient(circle,#3b82f6 0,#3b82f600 65%);animation:drift1 30s ease-in-out infinite alternate-reverse}
-#aurora i:nth-child(2){right:-180px;top:-220px;background:radial-gradient(circle,#d946ef 0,#d946ef00 65%);opacity:.16;animation:drift2 22s ease-in-out infinite alternate}
+#aurora i:nth-child(2){right:-180px;top:-220px;background:radial-gradient(circle,#8b5cf6 0,#8b5cf600 65%);opacity:.16;animation:drift2 22s ease-in-out infinite alternate}
 @keyframes drift1{to{transform:translate(160px,60px) scale(1.15)}}@keyframes drift2{to{transform:translate(-150px,80px) scale(.9)}}
 #grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 body{position:relative;z-index:0}
@@ -204,8 +204,8 @@ body{position:relative;z-index:0}
 .r-W{background:#0f2a24!important;color:var(--win)!important}.r-L{background:#2e1820!important;color:var(--loss)!important}.r-P{background:#1c1c20!important;color:#a1a1aa!important}
 .fund,.tile,.card,.hero,.pin,.cp,.wk .st,.vs .side{background:linear-gradient(180deg,var(--tc,#6d28d9b3) 0,#4c1d9500 46px),var(--panel)!important}
 .cp,.wk .st,.vs .side{background:linear-gradient(180deg,var(--tc,#6d28d9b3) 0,#4c1d9500 46px),var(--panel2)!important}
-.fund{--tc:#4f46e5a6}.pin{--tc:#7c3aedb3}#board .tile{--tc:#6d28d9a6}#board .tile:nth-child(even){--tc:#7e22cea6}
-#statsview .card{--tc:#a21cafa0}#weekview .card,#weekview .st{--tc:#4338caa6}#lbview .card{--tc:#9333eaa6}
+.fund{--tc:#4f46e5a6}.pin{--tc:#7c3aedb3}#board .tile{--tc:#6d28d9a6}#board .tile:nth-child(even){--tc:#5b21b6a6}
+#statsview .card{--tc:#6d28d9a6}#weekview .card,#weekview .st{--tc:#4338caa6}#lbview .card{--tc:#7c3aeda6}
 .spt{display:inline-block;padding:0 6px;border-radius:999px;font-size:11px;font-weight:700;border:1px solid var(--bd)}
 .sp-nfl{background:#1e1b4b;color:#a5b4fc}.sp-ncaaf{background:#0f2e2e;color:#5eead4}.sp-nba{background:#2e1a2a;color:#f0abfc}.sp-parlay{background:#24203a;color:#c4b5fd}
 .lb .it{background:linear-gradient(90deg,color-mix(in srgb,var(--ac) 9%,transparent),transparent 60%)}
@@ -225,7 +225,7 @@ body{position:relative;z-index:0}
 <div id="samplebar"></div>
 <div class="ptr" id="ptr">↻</div>
 <header><div style="flex:1"><h1>Kent's Sports <span>Desk</span></h1>
-<div class="sub">Every pick the desk makes · $20 a pick, flat · updated Tue Oct 13, 2026 12:22 PM ET</div></div></header>
+<div class="sub">Every pick the desk makes · $20 a pick, flat · updated Tue Oct 13, 2026 12:27 PM ET</div></div></header>
 <div class="fund" id="fund"></div>
 <div id="pin"></div>
 <div class="tabs" id="tabs"></div>
@@ -330,7 +330,7 @@ function render(){if(!fundDone){renderFund();fundDone=true}
   const area=line+` L${x(pts.length-1)},${y(0)} L${x(0)},${y(0)} Z`;const last=pts[pts.length-1];const col="#a855f7";
   let g="";const step=Math.max(10,Math.ceil((mx-mn)/4/10)*10);for(let v=Math.floor(mn/step)*step;v<=mx;v+=step)if(v>=mn)g+=`<line x1="${pl}" x2="${W-pr}" y1="${y(v)}" y2="${y(v)}" stroke="#2a2a2a"/><text x="${pl-6}" y="${y(v)+4}" fill="#9a9a9a" font-size="11" text-anchor="end">${v>0?"+":v<0?"-":""}$${Math.abs(v)}</text>`;
   const dots=pts.slice(1).map((v,i)=>{const r=settled[i].result;return `<circle cx="${x(i+1)}" cy="${y(v)}" r="3.5" fill="${r==="W"?"#6ee7b7":r==="L"?"#e8909f":"#8a8a93"}"><title>${esc(settled[i].game+" · "+settled[i].bet+" · "+r)}</title></circle>`}).join("");
-  $("chart").innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="none" style="height:auto;display:block"><defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${col}" stop-opacity=".35"/><stop offset="1" stop-color="${col}" stop-opacity="0"/></linearGradient></defs>${g}<line x1="${pl}" x2="${W-pr}" y1="${y(0)}" y2="${y(0)}" stroke="#ffffff" stroke-opacity=".18" stroke-dasharray="4 4"/><path d="${area}" fill="url(#ga)"/><linearGradient id="gl" x1="0" x2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#e879f9"/></linearGradient><path d="${line}" fill="none" stroke="url(#gl)" stroke-width="2.5" stroke-linejoin="round" pathLength="1" class="draw"/>${dots}<text x="${W-pr}" y="${y(last)-8}" fill="${col}" font-size="13" font-weight="700" text-anchor="end">${fd(last)}</text><text x="${pl}" y="${H-6}" fill="#9a9a9a" font-size="11">pick 1</text><text x="${W-pr}" y="${H-6}" fill="#9a9a9a" font-size="11" text-anchor="end">pick ${pts.length-1}</text></svg>`}
+  $("chart").innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="none" style="height:auto;display:block"><defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${col}" stop-opacity=".35"/><stop offset="1" stop-color="${col}" stop-opacity="0"/></linearGradient></defs>${g}<line x1="${pl}" x2="${W-pr}" y1="${y(0)}" y2="${y(0)}" stroke="#ffffff" stroke-opacity=".18" stroke-dasharray="4 4"/><path d="${area}" fill="url(#ga)"/><linearGradient id="gl" x1="0" x2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c4b5fd"/></linearGradient><path d="${line}" fill="none" stroke="url(#gl)" stroke-width="2.5" stroke-linejoin="round" pathLength="1" class="draw"/>${dots}<text x="${W-pr}" y="${y(last)-8}" fill="${col}" font-size="13" font-weight="700" text-anchor="end">${fd(last)}</text><text x="${pl}" y="${H-6}" fill="#9a9a9a" font-size="11">pick 1</text><text x="${W-pr}" y="${H-6}" fill="#9a9a9a" font-size="11" text-anchor="end">pick ${pts.length-1}</text></svg>`}
  // streak panel
  const last10=settled.filter(p=>p.result!=="P").slice(-10);
  $("streak").innerHTML=sk?`<div class="streak ${sk==="W"?"pos":"neg"}">${sk}${sn}</div><div class="flames">${last10.map(p=>`<span class="r r-${p.result}">${p.result}</span>`).join(" ")}</div><div class="mut">last ${last10.length} settled, oldest → newest</div>`
@@ -481,7 +481,7 @@ const ROLE={"Kent":"The boss · his own bets","Line Scout":"Spreads, totals, mon
 function miniChart(se){if(!se.length)return`<div class="mut">Chart draws after the first graded pick.</div>`;let c=0;const pts=[0,...se.map(p=>c+=(p.profit||0)*PER_UNIT)];const W=320,H=90,pd=8;
  const mx=Math.max(PER_UNIT,...pts),mn=Math.min(-PER_UNIT,...pts),x=i=>pd+i*(W-2*pd)/Math.max(1,pts.length-1),y=v=>pd+(mx-v)*(H-2*pd)/(mx-mn);
  const d=pts.map((v,i)=>`${i?"L":"M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
- return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="display:block"><defs><linearGradient id="gm" x1="0" x2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs><line x1="${pd}" x2="${W-pd}" y1="${y(0)}" y2="${y(0)}" stroke="#ffffff" stroke-opacity=".18" stroke-dasharray="3 3"/><path d="${d}" fill="none" stroke="url(#gm)" stroke-width="2.5" pathLength="1" class="draw"/>${pts.slice(1).map((v,i)=>`<circle cx="${x(i+1)}" cy="${y(v)}" r="3" fill="${se[i].result==="W"?"#6ee7b7":"#e8909f"}"/>`).join("")}</svg>`}
+ return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="display:block"><defs><linearGradient id="gm" x1="0" x2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#c4b5fd"/></linearGradient></defs><line x1="${pd}" x2="${W-pd}" y1="${y(0)}" y2="${y(0)}" stroke="#ffffff" stroke-opacity=".18" stroke-dasharray="3 3"/><path d="${d}" fill="none" stroke="url(#gm)" stroke-width="2.5" pathLength="1" class="draw"/>${pts.slice(1).map((v,i)=>`<circle cx="${x(i+1)}" cy="${y(v)}" r="3" fill="${se[i].result==="W"?"#6ee7b7":"#e8909f"}"/>`).join("")}</svg>`}
 function openBot(nm){haptic();const ic=(BOTS.find(b=>b[0]===nm)||[])[1]||"";const all=DATA.filter(p=>(p.credit||[]).includes(nm));const st=stats(all),sk=streakOf(all);
  const best=all.filter(p=>p.result==="W").sort((a,b)=>b.profit-a.profit)[0];const bd=badges(nm,all,st,sk);const pend=all.filter(p=>p.result==="PENDING");
  const shadow=all.filter(p=>p.source==="passed").length;
@@ -505,7 +505,7 @@ function renderWeek(){const now=Date.now();let nextSet=0;
  const row=s=>{const due=Date.parse(s.due);let c,t;if(s.done){c="done";t="Done"}else if(now>due){c="late";t="Overdue"}else if(due-now<36*3600e3){c="due";t="Due soon"}else{c="up";t="Upcoming"}
   const dl=new Date(due).toLocaleString("en-US",{weekday:"short",hour:"numeric",minute:"2-digit",timeZone:TZ});
   return `<div class="st${!s.done&&!nextSet&&(nextSet=1)?" next":""}"><div class="dy">${esc(s.day)}</div><div><div class="tt">${esc(s.t)}</div><div class="mut">${esc(s.d)} · due ${esc(dl)} ET</div></div><span class="ss ${c}">${t}</span></div>`};
- $("weekview").innerHTML=`<div class="card wk"><h3>This week · week of ${esc(fmtWk(WEEK.week))}</h3><div class="stag">${WEEK.steps.map(row).join("")}</div><div class="mut">Status comes from the files in the week folder at build time (${esc("Tue Oct 13, 2026 12:22 PM ET")}).</div></div>`}
+ $("weekview").innerHTML=`<div class="card wk"><h3>This week · week of ${esc(fmtWk(WEEK.week))}</h3><div class="stag">${WEEK.steps.map(row).join("")}</div><div class="mut">Status comes from the files in the week folder at build time (${esc("Tue Oct 13, 2026 12:27 PM ET")}).</div></div>`}
 
 // ---------- haptics (vibrate where supported; iOS 18+ switch-checkbox trick) ----------
 function haptic(){try{navigator.vibrate&&navigator.vibrate(10)}catch(e){}try{const l=document.getElementById("hpl");if(l&&/iP(hone|ad|od)/.test(navigator.userAgent))l.click()}catch(e){}}
@@ -563,7 +563,7 @@ function celebrate(){if(STILL&&!/[?&]celebrate\b/.test(location.search))return;i
  toast(`<b>${esc(NICK[who]||who)} hit:</b> ${esc(shortBet(p.bet,p.game))} <span class="pos">${fm(p.profit)}</span>${fresh.length>1?` <span class="mut">+${fresh.length-1} more</span>`:""}`);
  if(!matchMedia("(prefers-reduced-motion: reduce)").matches)confetti()}
 // ---------- auto-update (home-screen apps have no pull-to-refresh) ----------
-const BUILD_ID="Tue Oct 13, 2026 12:22 PM ET";
+const BUILD_ID="Tue Oct 13, 2026 12:27 PM ET";
 function hardReload(){location.replace(location.pathname+"?r="+Date.now()+location.hash)}
 async function checkUpdate(){try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/const BUILD_ID="([^"]*)"/);if(m&&m[1]!==BUILD_ID)hardReload()}catch(e){}}
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")checkUpdate()});
