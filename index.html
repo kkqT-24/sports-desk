@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="KBets">
 <meta name="application-name" content="KBets">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1792187564">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1792187981">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="manifest" href="manifest.webmanifest">
@@ -249,7 +249,7 @@ body{position:relative;z-index:0}
 /* richer history rows */
 #histview{max-width:860px;margin:0 auto}
 .hr{position:relative;animation:fadeup .3s ease both;animation-delay:calc(var(--i) * 35ms)}.hr:before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:3px;border-radius:0 3px 3px 0;background:var(--tcol)}
-.t-total{--tcol:#7067f0;--tbg:#1e1b4b;--tfg:#b4b0fc}.t-spread{--tcol:#8b6cf5;--tbg:#2a1f4d;--tfg:#b4b0fc}.t-prop{--tcol:#ec4899;--tbg:#3a1630;--tfg:#f9a8d4}.t-parlay{--tcol:#b4b0fc;--tbg:#26223a;--tfg:#c7d2fe}.t-ml{--tcol:#2dd4bf;--tbg:#0f2e2e;--tfg:#5eead4}
+.t-total{--tcol:#7067f0;--tbg:#1e1b4b;--tfg:#b4b0fc}.t-spread{--tcol:#8b6cf5;--tbg:#2a1f4d;--tfg:#b4b0fc}.t-prop{--tcol:#ec4899;--tbg:#3a1630;--tfg:#f9a8d4}.t-parlay{--tcol:#c4b5fd;--tbg:#2d2547;--tfg:#e4dcff}.t-ml{--tcol:#2dd4bf;--tbg:#0f2e2e;--tfg:#5eead4}
 .hl{grid-template-columns:minmax(0,1fr) auto!important;gap:12px!important;padding:10px 14px 10px 16px!important}
 .hm{min-width:0;display:flex;flex-direction:column;gap:4px}
 .h1{display:flex;align-items:center;gap:7px;min-width:0}.btt{flex:none;font-size:9.5px;font-weight:900;letter-spacing:.8px;padding:2px 6px;border-radius:5px;background:var(--tbg);color:var(--tfg)}
@@ -351,11 +351,23 @@ html,body{overflow-anchor:none}
 .hbk{margin-top:9px;padding-top:8px;border-top:1px dashed var(--bd);font-size:12px;color:var(--mut)}.hbk b{color:#eef1f7;font-weight:700;margin:0 2px}
 #histview .balegend{margin-top:12px}
 .yours{font-size:10px;font-weight:800;letter-spacing:.6px;padding:2px 7px;border-radius:999px;color:#b4b0fc;border:1px solid rgba(180,176,252,.35);margin-right:6px}
+/* History filter row: fixed, equal columns, never scrolls (iOS clipped it when it could scroll) */
+.hseg2{display:flex;gap:0;flex:1;min-width:0;overflow:hidden!important;touch-action:pan-y;overscroll-behavior:none}
+.hseg2 button{flex:1 1 0;min-width:0;text-align:center;padding:9px 2px 10px;overflow:hidden;text-overflow:clip}
+.hseg2 button .ct{margin-left:3px}
+#histview .hsum{position:relative}
+#histview .hsum .hsel{position:absolute;top:8px;right:10px;z-index:1}
+#histview .hsum .hs1{padding-right:0}
+/* Parlay accent: lavender wash + left bar + tag, on pick cards and History rows */
+.cp.isparlay{--tc:#c4b5fd5c!important;box-shadow:inset 3px 0 0 #c4b5fd!important}
+.cp.isparlay .rk,.cp.isparlay .btag{color:#e4dcff}
+.hr.t-parlay{background:linear-gradient(180deg,#c4b5fd2e 0,#c4b5fd00 70px)}
+.t-parlay .btt{background:#2d2547!important;color:#e4dcff!important;border:1px solid #c4b5fd55!important}
 </style></head><body><div id="aurora" aria-hidden="true"><i></i><i></i></div><div id="grain" aria-hidden="true"></div><div class="wrap">
 <div id="samplebar"></div>
 <div class="ptr" id="ptr" aria-hidden="true"><svg viewBox="0 0 20 20"><defs><linearGradient id="pg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f46e5"/><stop offset=".5" stop-color="#8b6cf5"/><stop offset="1" stop-color="#c7d2fe"/></linearGradient></defs><circle cx="10" cy="10" r="7.5" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="2.2"/><circle cx="10" cy="10" r="7.5" fill="none" stroke="url(#pg)" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="33 47"/></svg></div>
 <header><div style="flex:1"><h1>Kent's Sports <span>Desk</span></h1>
-<div class="sub">Every pick the desk makes · $20 a pick, flat · updated Fri Oct 16, 2026 5:52 PM ET</div></div></header>
+<div class="sub">Every pick the desk makes · $20 a pick, flat · updated Fri Oct 16, 2026 5:59 PM ET</div></div></header>
 <div class="fund" id="fund"></div>
 <div id="hibanner"></div>
 <div id="pin"></div>
@@ -538,7 +550,7 @@ function _renderLast(seg){
  const head="Last card";
  const sub=`week of ${esc(fmtWk(wk))} · ${cps.length} pick${cps.length>1?"s":""}`+(st.n?` · ${st.W}-${st.L}-${st.P} <span class="${cls(st.profit)}">${fm(st.profit)}</span>`:"");
  $("pin").innerHTML=`<div class="pin">${seg}<div class="ph"><h2>${head}</h2><span class="mut">${sub}</span></div><div class="cards">${cps.map(p=>{const s=cdState(p);const al=p.source==="alert";
-  return `<div class="cp ${al?"isalert":""}${p.conf==="High"?" hiconf":""}" data-cid="${esc(p.id)}"><div class="top">${KOWN(p)?`<span class="yours">Yours</span>`:""}<span class="rk">${al?"ALERT":"CARD"} · ${ICON[p.sport]||""} ${sp(p.sport)}</span><span class="tr"><span class="cd ${s.c}" data-pid="${esc(p.id)}">${s.t}</span><button class="shb" data-share="${esc(p.id)}" aria-label="Share pick"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5M5 14v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg></button></span></div>
+  return `<div class="cp ${al?"isalert":""}${p.conf==="High"?" hiconf":""}${btype(p)==="parlay"?" isparlay":""}" data-cid="${esc(p.id)}"><div class="top">${KOWN(p)?`<span class="yours">Yours</span>`:""}<span class="rk">${al?"ALERT":"CARD"} · ${ICON[p.sport]||""} ${sp(p.sport)}</span><span class="tr"><span class="cd ${s.c}" data-pid="${esc(p.id)}">${s.t}</span><button class="shb" data-share="${esc(p.id)}" aria-label="Share pick"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5M5 14v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg></button></span></div>
   <div class="bt">${esc(p.bet)} ${p.vskc?'<span class="badge b-kc">vs KC</span>':""}</div>
   <div class="mut">${esc(p.game)} · ${esc(when(p.start,p.start_iso))} ET</div>
   ${p.result!=="PENDING"&&p.final?`<div class="meta"><span>FINAL <b>${esc(p.final)}</b></span></div>`:""}${p.result!=="PENDING"&&p.outcome?`<div class="meta"><span>OUTCOME <b>${esc(p.outcome)}</b></span></div>`:""}
@@ -663,7 +675,7 @@ function sheetDrag(sh,onClose){const inn=sh.querySelector(".in");lockBody(true);
  sh.addEventListener("touchmove",e=>{if(!inn.contains(e.target)&&e.cancelable)e.preventDefault()},{passive:false})}
 // ---------- current picks ----------
 function nowHTML(){const ps=DATA.filter(p=>p.result==="PENDING"&&DESK(p)).sort((a,b)=>(ts(a)||0)-(ts(b)||0));
- return `<div>${ps.length?`<div class="cards stag">${ps.map(p=>{const s=cdState(p);return `<div class="cp ${p.source==="alert"?"isalert":""}${p.conf==="High"?" hiconf":""}" data-cid="${esc(p.id)}"><div class="top"><span class="rk">${ICON[p.sport]||""} ${sp(p.sport)} · <span class="badge b-${esc(p.source)}">${esc(p.source)}</span></span><span class="tr"><span class="cd ${s.c}" data-pid="${esc(p.id)}">${s.t}</span><button class="shb" data-share="${esc(p.id)}" aria-label="Share pick"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5M5 14v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg></button></span></div>
+ return `<div>${ps.length?`<div class="cards stag">${ps.map(p=>{const s=cdState(p);return `<div class="cp ${p.source==="alert"?"isalert":""}${p.conf==="High"?" hiconf":""}${btype(p)==="parlay"?" isparlay":""}" data-cid="${esc(p.id)}"><div class="top"><span class="rk">${ICON[p.sport]||""} ${sp(p.sport)} · <span class="badge b-${esc(p.source)}">${esc(p.source)}</span></span><span class="tr"><span class="cd ${s.c}" data-pid="${esc(p.id)}">${s.t}</span><button class="shb" data-share="${esc(p.id)}" aria-label="Share pick"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5M5 14v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg></button></span></div>
   <div class="bt">${esc(p.bet)} ${p.vskc?'<span class="badge b-kc">vs KC</span>':""}</div><div class="mut">${esc(p.game)} · ${esc(when(p.start,p.start_iso))} ET</div>
   <div class="meta"><span>Price <b>${fp(p.price)}</b> ${esc(p.book||"")}</span>${confB(p)}${p.min!=null?`<span>Min <b>${fp(p.min)}</b></span>`:""}<span>By <b>${esc((p.credit||[]).map(c=>NICK[c]||c).join(", ")||"—")}</b></span>${p.real_stake?`<span>Your stake <b>$${p.real_stake.toFixed(0)}</b></span>`:""}</div>
   <div class="sc" data-pid="${esc(p.id)}">${scoreHTML(p.id)}</div></div>`}).join("")}</div><div class="mut" style="margin-top:8px">Live scores from ESPN while a game is on (checks about every 60s). No score shown = no live data, never a guess.</div>`:`<div class="empty"><div class="big">🎯</div><b>No live desk picks right now.</b><br>Passed ideas live in the Passed tab. The Friday card lands here.</div>`}</div>`}
@@ -672,7 +684,7 @@ function renderWeek(){const now=Date.now();let nextSet=0;
  const row=s=>{const due=Date.parse(s.due);let c,t;if(s.done){c="done";t="Done"}else if(now>due){c="late";t="Overdue"}else if(due-now<36*3600e3){c="due";t="Due soon"}else{c="up";t="Upcoming"}
   const dl=new Date(due).toLocaleString("en-US",{weekday:"short",hour:"numeric",minute:"2-digit",timeZone:TZ});
   return `<div class="st${!s.done&&!nextSet&&(nextSet=1)?" next":""}"><div class="dy">${esc(s.day)}</div><div><div class="tt">${esc(s.t)}</div><div class="mut">${esc(s.d)} · due ${esc(dl)} ET</div></div><span class="ss ${c}">${t}</span></div>`};
- $("weekview").innerHTML=`<div class="card wk"><h3>This week · week of ${esc(fmtWk(WEEK.week))}</h3><div class="stag">${WEEK.steps.map(row).join("")}</div><div class="mut">Status comes from the files in the week folder at build time (${esc("Fri Oct 16, 2026 5:52 PM ET")}).</div></div>${weekDebateHTML()}${scorecardsHTML()}`}
+ $("weekview").innerHTML=`<div class="card wk"><h3>This week · week of ${esc(fmtWk(WEEK.week))}</h3><div class="stag">${WEEK.steps.map(row).join("")}</div><div class="mut">Status comes from the files in the week folder at build time (${esc("Fri Oct 16, 2026 5:59 PM ET")}).</div></div>${weekDebateHTML()}${scorecardsHTML()}`}
 
 // ---------- haptics (vibrate where supported; iOS 18+ switch-checkbox trick) ----------
 function haptic(){try{navigator.vibrate&&navigator.vibrate(10)}catch(e){}try{const l=document.getElementById("hpl");if(l&&/iP(hone|ad|od)/.test(navigator.userAgent)){const y=window.scrollY;l.click();const i=l.querySelector("input");if(i&&document.activeElement===i)i.blur();if(window.scrollY!==y&&sheetLockY===null)window.scrollTo(0,y)}}catch(e){}}
@@ -774,7 +786,7 @@ function renderHist(){const el=$("histview");
   const strip=[...L].reverse().map(p=>`<i class="d d-${p.result}"></i>`).join("");
   return `<section class="hw${op?" open":""}"><button class="hwh" data-wk="${esc(w)}"><span class="hwt">Week of ${esc(fmtWk(w))}</span><span class="hws">${strip}</span><span class="hwr mono">${s.W}-${s.L}-${s.P}</span><span class="hwp mono ${cls(s.profit)}">${s.n?fm(s.profit):"—"}</span><span class="car">›</span></button>
   ${op?`<div class="hwb">${L.slice(0,lim).map((p,i)=>hRow(p,i)).join("")}${L.length>lim?`<button class="more" data-more="${esc(w)}">Show ${Math.min(8,L.length-lim)} more</button>`:""}</div>`:""}</section>`}).join("")+(keys.length>histWeeksShown?`<button class="more" data-moreweeks="1">Show older weeks</button>`:"");
- el.innerHTML=`<div class="hbar"><div class="hrow">${seg}${chips}</div></div>${sum}<div class="hlist">${body}</div>`;
+ el.innerHTML=`<div class="hbar"><div class="hrow">${seg}</div></div>${sum.replace('<div class="hsum card">','<div class="hsum card">'+chips)}<div class="hlist">${body}</div>`;
  el.querySelectorAll("[data-hf]").forEach(b=>b.onclick=()=>{haptic();histF=b.dataset.hf;histSport="all";try{localStorage.setItem("kbets_hist_filter",histF)}catch(e){}renderHist()});
  const hs=el.querySelector("[data-hsel]");if(hs)hs.onchange=()=>{haptic();histSport=hs.value;renderHist()};
  el.querySelectorAll("[data-wk]").forEach(b=>b.onclick=()=>{haptic();const w=b.dataset.wk;renderHist.wopen.has(w)?renderHist.wopen.delete(w):renderHist.wopen.add(w);renderHist()});
@@ -843,7 +855,7 @@ function shadowHTML(){const L=SHADOW.ledger||[],C=SHADOW.cuts||[],B=SHADOW.brier
  ${C.length?`<div class="mut" style="margin-top:8px">Cut pitches (shadow_log): <b>${c.W}-${c.L}-${c.P}</b> · <span class="${cls(c.pl)}">${c.n?fd(c.pl):"$0.00"}</span> · ${c.open} grading</div>`:""}
  <div class="mut" style="margin-top:4px;font-size:11px">Model ledger: qualifying sides from props/shadow/ledger.csv, one per player/market/side (first logged). Graded at $${PER_UNIT} flat.</div></div>`}
 // ---------- auto-update (home-screen apps have no pull-to-refresh) ----------
-const BUILD_ID="Fri Oct 16, 2026 5:52 PM ET";
+const BUILD_ID="Fri Oct 16, 2026 5:59 PM ET";
 function hardReload(){location.replace(location.pathname+"?r="+Date.now()+location.hash)}
 async function checkUpdate(){try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/const BUILD_ID="([^"]*)"/);if(m&&m[1]!==BUILD_ID)hardReload()}catch(e){}}
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")checkUpdate()});
