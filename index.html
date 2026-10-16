@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="KBets">
 <meta name="application-name" content="KBets">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1792176048">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1792176391">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="manifest" href="manifest.webmanifest">
@@ -245,11 +245,30 @@ body{position:relative;z-index:0}
 .hact{display:flex;align-items:center;gap:8px}
 .more{width:100%;background:none;border:0;border-top:1px solid var(--bd);color:#c4b5fd;font:700 13px -apple-system,sans-serif;padding:11px;cursor:pointer}.hlist>.more{border:1px solid var(--bd);border-radius:14px;background:var(--panel)}
 @media (hover:hover){.hwh:hover,.hl:hover{background:#ffffff06}}
+
+/* richer history rows */
+#histview{max-width:860px;margin:0 auto}
+.hr{position:relative;animation:fadeup .3s ease both;animation-delay:calc(var(--i) * 35ms)}.hr:before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:3px;border-radius:0 3px 3px 0;background:var(--tcol)}
+.t-total{--tcol:#6366f1;--tbg:#1e1b4b;--tfg:#a5b4fc}.t-spread{--tcol:#8b5cf6;--tbg:#2a1f4d;--tfg:#c4b5fd}.t-prop{--tcol:#ec4899;--tbg:#3a1630;--tfg:#f9a8d4}.t-parlay{--tcol:#c4b5fd;--tbg:#26223a;--tfg:#ddd6fe}.t-ml{--tcol:#2dd4bf;--tbg:#0f2e2e;--tfg:#5eead4}
+.hl{grid-template-columns:minmax(0,1fr) auto!important;gap:12px!important;padding:10px 14px 10px 16px!important}
+.hm{min-width:0;display:flex;flex-direction:column;gap:4px}
+.h1{display:flex;align-items:center;gap:7px;min-width:0}.tt{flex:none;font-size:9.5px;font-weight:900;letter-spacing:.8px;padding:2px 6px;border-radius:5px;background:var(--tbg);color:var(--tfg)}
+.hb{min-width:0;font-size:14px!important;white-space:normal!important;overflow:visible!important;line-height:1.3}
+.h2{display:flex;flex-wrap:wrap;gap:3px 9px;align-items:center;font-size:11.5px;color:var(--mut)}.h2 .mono{font-size:11.5px}
+.src{font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:1px 6px;border-radius:999px;border:1px solid var(--bd)}.s-mine{color:#a5b4fc;background:#1e1b4b}.s-play{color:#c4b5fd;background:#2a1f3d}.s-pass{color:#a1a1aa;background:#1c1c20}
+.hrr{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:3px}.hrr>div:first-child{display:flex;align-items:center;gap:8px}
+.hp{min-width:58px}.hf{font-size:10.5px;color:var(--mut);max-width:118px;line-height:1.3}
+.r-PENDING{background:#2a1f3d!important;color:#c4b5fd!important;font-size:10.5px}
+.hw{transition:transform .18s ease,box-shadow .18s ease}
+@media (hover:hover){.hw:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(124,58,237,.16)}.hl:hover{background:#ffffff06}}
+.hw:active{transform:translateY(-1px)}
+.rm .hr{animation:none}
+@media (min-width:761px){.hb{font-size:15px!important}.h2{font-size:12px}.hl{padding:12px 18px 12px 20px!important}.hwh{padding:14px 18px}}
 </style></head><body><div id="aurora" aria-hidden="true"><i></i><i></i></div><div id="grain" aria-hidden="true"></div><div class="wrap">
 <div id="samplebar"></div>
 <div class="ptr" id="ptr" aria-hidden="true"><svg viewBox="0 0 20 20"><defs><linearGradient id="pg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f46e5"/><stop offset=".5" stop-color="#8b5cf6"/><stop offset="1" stop-color="#ddd6fe"/></linearGradient></defs><circle cx="10" cy="10" r="7.5" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="2.2"/><circle cx="10" cy="10" r="7.5" fill="none" stroke="url(#pg)" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="33 47"/></svg></div>
 <header><div style="flex:1"><h1>Kent's Sports <span>Desk</span></h1>
-<div class="sub">Every pick the desk makes · $20 a pick, flat · updated Fri Oct 16, 2026 2:40 PM ET</div></div></header>
+<div class="sub">Every pick the desk makes · $20 a pick, flat · updated Fri Oct 16, 2026 2:46 PM ET</div></div></header>
 <div class="fund" id="fund"></div>
 <div id="pin"></div>
 <div class="tabs" id="tabs"></div>
@@ -533,7 +552,7 @@ function renderWeek(){const now=Date.now();let nextSet=0;
  const row=s=>{const due=Date.parse(s.due);let c,t;if(s.done){c="done";t="Done"}else if(now>due){c="late";t="Overdue"}else if(due-now<36*3600e3){c="due";t="Due soon"}else{c="up";t="Upcoming"}
   const dl=new Date(due).toLocaleString("en-US",{weekday:"short",hour:"numeric",minute:"2-digit",timeZone:TZ});
   return `<div class="st${!s.done&&!nextSet&&(nextSet=1)?" next":""}"><div class="dy">${esc(s.day)}</div><div><div class="tt">${esc(s.t)}</div><div class="mut">${esc(s.d)} · due ${esc(dl)} ET</div></div><span class="ss ${c}">${t}</span></div>`};
- $("weekview").innerHTML=`<div class="card wk"><h3>This week · week of ${esc(fmtWk(WEEK.week))}</h3><div class="stag">${WEEK.steps.map(row).join("")}</div><div class="mut">Status comes from the files in the week folder at build time (${esc("Fri Oct 16, 2026 2:40 PM ET")}).</div></div>`}
+ $("weekview").innerHTML=`<div class="card wk"><h3>This week · week of ${esc(fmtWk(WEEK.week))}</h3><div class="stag">${WEEK.steps.map(row).join("")}</div><div class="mut">Status comes from the files in the week folder at build time (${esc("Fri Oct 16, 2026 2:46 PM ET")}).</div></div>`}
 
 // ---------- haptics (vibrate where supported; iOS 18+ switch-checkbox trick) ----------
 function haptic(){try{navigator.vibrate&&navigator.vibrate(10)}catch(e){}try{const l=document.getElementById("hpl");if(l&&/iP(hone|ad|od)/.test(navigator.userAgent))l.click()}catch(e){}}
@@ -597,9 +616,24 @@ function spark(ps){const se=ps.filter(p=>p.result!=="PENDING").sort((a,b)=>(a.st
  const W=120,H=34,mx=Math.max(1,...pts),mn=Math.min(-1,...pts),x=i=>2+i*(W-4)/Math.max(1,pts.length-1),y=v=>2+(mx-v)*(H-4)/(mx-mn);
  return `<svg class="spk" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}"><defs><linearGradient id="sg" x1="0" x2="1"><stop offset="0" stop-color="#6d28d9"/><stop offset="1" stop-color="#c4b5fd"/></linearGradient></defs><line x1="2" x2="${W-2}" y1="${y(0)}" y2="${y(0)}" stroke="#fff" stroke-opacity=".12" stroke-dasharray="2 3"/><path d="${pts.map((v,i)=>`${i?"L":"M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ")}" fill="none" stroke="url(#sg)" stroke-width="2" stroke-linejoin="round"/><circle cx="${x(pts.length-1)}" cy="${y(pts[pts.length-1])}" r="2.6" fill="${pts[pts.length-1]>=0?"#6ee7b7":"#e8909f"}"/></svg>`}
 const chip=r=>`<span class="r r-${r}">${r==="PENDING"?"OPEN":r}</span>`;
-function hRow(p){const pend=p.result==="PENDING",op=histOpen===p.id;const by=(p.credit||[]).map(n=>`${esc(NICK[n]||n)} ${BEMO[n]||""}`).join(", ")||"—";
- return `<div class="hr${op?" open":""}" data-row="${esc(p.id)}"><div class="hl"><span class="hb">${esc(p.bet)}</span><span class="ho mono">${fp(p.price)}</span>${chip(p.result)}<span class="hp mono ${cls(p.profit)}">${pend?"—":fm(p.profit)}</span></div>
- ${op?`<div class="hd"><div class="mut">${sp(p.sport)} ${esc(p.game)} · ${esc(when(p.start,p.start_iso))} ET · ${esc(p.book||"")} <span class="badge b-${esc(p.source)}">${esc(p.source)}</span>${p.vskc?' <span class="badge b-kc">vs KC</span>':""}</div>
+const BT={total:["TOTAL","t-total"],spread:["SPREAD","t-spread"],prop:["PROP","t-prop"],parlay:["PARLAY","t-parlay"],ml:["ML","t-ml"],moneyline:["ML","t-ml"]};
+function btype(p){const m=(p.market||"").toLowerCase();if(BT[m])return m;if(p.sport==="parlay"||/parlay/i.test(p.bet))return"parlay";if(/^(OVER|UNDER)\s/i.test(p.bet))return"total";if(/[+-]\d+(\.\d)?$/.test(p.bet))return"spread";if(/\bML\b|moneyline/i.test(p.bet))return"ml";return"prop"}
+const cap=w=>w[0]+w.slice(1).toLowerCase();
+const STAT=s=>String(s||"").replace(/receiving yards?/i,"rec yds").replace(/rushing yards?/i,"rush yds").replace(/passing yards?/i,"pass yds").replace(/receptions?/i,"rec");
+const mu=g=>String(g||"").replace(/\s*@\s*/g," @ ");
+function htitle(p){const t=btype(p),b=String(p.bet||"");
+ if(t==="total"){const m=b.match(/^(OVER|UNDER)\s+([\d.]+)/i);return `${mu(p.game)} · ${m?cap(m[1])+" "+m[2]:b}`}
+ if(t==="spread"||t==="ml")return `${mu(p.game)} · ${b}`;
+ if(t==="prop"){const m=b.match(/^(.*?)\s+(OVER|UNDER)\s+([\d.]+)\s*(.*)$/i);if(m)return `${m[1].trim().split(" ").pop()} · ${cap(m[2])} ${m[3]} ${STAT(m[4])}`.trim();return b}
+ if(t==="parlay")return b.replace(/\s*\(\d-leg parlay\)\s*/i,"").replace(/Jonathan |Tyler /g,"");return b}
+function hsrc(p){if((p.credit||[]).includes("Kent")||p.real_stake)return["Mine","s-mine"];if(DESK(p))return["Played","s-play"];return["Passed","s-pass"]}
+function hRow(p,i){const pend=p.result==="PENDING",op=histOpen===p.id,t=btype(p),[tl,tc]=BT[t]||BT.prop,[sl,sc]=hsrc(p);
+ const mk=(p.credit||[])[0],by=(p.credit||[]).map(n=>`${BEMO[n]||""} ${esc(NICK[n]||n)}`).join(", ")||"—";
+ const d=p.start_iso?new Date(p.start_iso).toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric",timeZone:TZ}):"";
+ return `<div class="hr ${tc}${op?" open":""}" data-row="${esc(p.id)}" style="--i:${i||0}"><div class="hl"><div class="hm"><div class="h1"><span class="tt">${tl}</span><span class="hb">${esc(htitle(p))}</span></div>
+ <div class="h2">${sp(p.sport)}<span>${mk?(BEMO[mk]||"")+" "+esc(NICK[mk]||mk):""}</span><span class="mono">${fp(p.price)}${p.book?" "+esc(p.book):""}</span><span>${esc(d)}</span><span class="src ${sc}">${sl}</span></div></div>
+ <div class="hrr"><div>${chip(p.result)}<span class="hp mono ${cls(p.profit)}">${pend?"":fm(p.profit)}</span></div>${!pend&&p.final?`<div class="hf mono">${esc(p.final)}</div>`:""}</div></div>
+ ${op?`<div class="hd"><div class="mut">${esc(p.bet)}</div><div class="mut">${esc(mu(p.game))} · ${esc(when(p.start,p.start_iso))} ET${p.vskc?' · <span class="badge b-kc">vs KC</span>':""}</div>
  ${p.final?`<div class="meta"><span>FINAL <b>${esc(p.final)}</b></span></div>`:""}${p.outcome?`<div class="meta"><span>OUTCOME <b>${esc(p.outcome)}</b></span></div>`:""}
  <div class="meta"><span>By <b>${by}</b></span>${p.real_stake?`<span>Your stake <b>$${p.real_stake.toFixed(0)}</b>${p.real_profit!=null?` <span class="${cls(p.real_profit)}">${fd(p.real_profit)}</span>`:""}</span>`:""}${p.clv!=null?`<span>CLV <b>${(p.clv>0?"+":"")+p.clv.toFixed(1)}</b></span>`:""}${p.min!=null?`<span>Min <b>${fp(p.min)}</b></span>`:""}</div>
  ${pend?`<div class="sc" data-pid="${esc(p.id)}">${scoreHTML(p.id)}</div>`:""}<div class="hact"><button class="shb" data-share="${esc(p.id)}" aria-label="Share pick"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5M5 14v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg></button><span class="mut">Share</span></div></div>`:""}</div>`}
@@ -615,18 +649,18 @@ function renderHist(){const el=$("histview");if(cur!=="history"){el.innerHTML=""
  const body=!ps.length?`<div class="card"><div class="empty">${EMPTY[histF]}</div></div>`:keys.slice(0,histWeeksShown).map((w,wi)=>{const L=wks[w].sort((a,b)=>(b.start||"").localeCompare(a.start||"")),s=stats(L),op=renderHist.wopen.has(w),lim=histMore[w]||8;
   const strip=[...L].reverse().map(p=>`<i class="d d-${p.result}"></i>`).join("");
   return `<section class="hw${op?" open":""}"><button class="hwh" data-wk="${esc(w)}"><span class="hwt">Week of ${esc(fmtWk(w))}</span><span class="hws">${strip}</span><span class="hwr mono">${s.W}-${s.L}-${s.P}</span><span class="hwp mono ${cls(s.profit)}">${s.n?fm(s.profit):"—"}</span><span class="car">›</span></button>
-  ${op?`<div class="hwb">${L.slice(0,lim).map(hRow).join("")}${L.length>lim?`<button class="more" data-more="${esc(w)}">Show ${Math.min(8,L.length-lim)} more</button>`:""}</div>`:""}</section>`}).join("")+(keys.length>histWeeksShown?`<button class="more" data-moreweeks="1">Show older weeks</button>`:"");
+  ${op?`<div class="hwb">${L.slice(0,lim).map((p,i)=>hRow(p,i)).join("")}${L.length>lim?`<button class="more" data-more="${esc(w)}">Show ${Math.min(8,L.length-lim)} more</button>`:""}</div>`:""}</section>`}).join("")+(keys.length>histWeeksShown?`<button class="more" data-moreweeks="1">Show older weeks</button>`:"");
  el.innerHTML=`<div class="hbar">${seg}${chips}</div>${sum}<div class="hlist">${body}</div>`;
  el.querySelectorAll("[data-hf]").forEach(b=>b.onclick=()=>{haptic();histF=b.dataset.hf;histSport="all";try{localStorage.setItem("kbets_hist_filter",histF)}catch(e){}renderHist()});
  el.querySelectorAll("[data-hs]").forEach(b=>b.onclick=()=>{haptic();histSport=b.dataset.hs;renderHist()});
  el.querySelectorAll("[data-wk]").forEach(b=>b.onclick=()=>{haptic();const w=b.dataset.wk;renderHist.wopen.has(w)?renderHist.wopen.delete(w):renderHist.wopen.add(w);renderHist()});
- el.querySelectorAll("[data-row] .hl").forEach(b=>b.onclick=()=>{const id=b.parentNode.dataset.row;histOpen=histOpen===id?"":id;renderHist()});
+ el.querySelectorAll("[data-row] .hl").forEach(b=>b.onclick=()=>{haptic();const id=b.parentNode.dataset.row;histOpen=histOpen===id?"":id;renderHist.noAnim=1;renderHist();renderHist.noAnim=0});
  el.querySelectorAll("[data-more]").forEach(b=>b.onclick=()=>{histMore[b.dataset.more]=(histMore[b.dataset.more]||8)+8;renderHist()});
  el.querySelectorAll("[data-moreweeks]").forEach(b=>b.onclick=()=>{histWeeksShown+=6;renderHist()});
  countUp(el)}
 document.addEventListener("click",e=>{const g=e.target.closest&&e.target.closest("[data-go]");if(g){haptic();cur=g.dataset.go;history.replaceState(null,"","#"+cur);render();scrollTo({top:$("tabs").offsetTop-8,behavior:RM?"auto":"smooth"})}});
 // ---------- auto-update (home-screen apps have no pull-to-refresh) ----------
-const BUILD_ID="Fri Oct 16, 2026 2:40 PM ET";
+const BUILD_ID="Fri Oct 16, 2026 2:46 PM ET";
 function hardReload(){location.replace(location.pathname+"?r="+Date.now()+location.hash)}
 async function checkUpdate(){try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/const BUILD_ID="([^"]*)"/);if(m&&m[1]!==BUILD_ID)hardReload()}catch(e){}}
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")checkUpdate()});
