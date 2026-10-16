@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="KBets">
 <meta name="application-name" content="KBets">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1792184183">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1792185422">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="manifest" href="manifest.webmanifest">
@@ -334,7 +334,7 @@ html,body{overflow-anchor:none}
 <div id="samplebar"></div>
 <div class="ptr" id="ptr" aria-hidden="true"><svg viewBox="0 0 20 20"><defs><linearGradient id="pg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f46e5"/><stop offset=".5" stop-color="#8b6cf5"/><stop offset="1" stop-color="#c7d2fe"/></linearGradient></defs><circle cx="10" cy="10" r="7.5" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="2.2"/><circle cx="10" cy="10" r="7.5" fill="none" stroke="url(#pg)" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="33 47"/></svg></div>
 <header><div style="flex:1"><h1>Kent's Sports <span>Desk</span></h1>
-<div class="sub">Every pick the desk makes · $20 a pick, flat · updated Fri Oct 16, 2026 4:56 PM ET</div></div></header>
+<div class="sub">Every pick the desk makes · $20 a pick, flat · updated Fri Oct 16, 2026 5:17 PM ET</div></div></header>
 <div class="fund" id="fund"></div>
 <div id="hibanner"></div>
 <div id="pin"></div>
@@ -625,7 +625,7 @@ function renderWeek(){const now=Date.now();let nextSet=0;
  const row=s=>{const due=Date.parse(s.due);let c,t;if(s.done){c="done";t="Done"}else if(now>due){c="late";t="Overdue"}else if(due-now<36*3600e3){c="due";t="Due soon"}else{c="up";t="Upcoming"}
   const dl=new Date(due).toLocaleString("en-US",{weekday:"short",hour:"numeric",minute:"2-digit",timeZone:TZ});
   return `<div class="st${!s.done&&!nextSet&&(nextSet=1)?" next":""}"><div class="dy">${esc(s.day)}</div><div><div class="tt">${esc(s.t)}</div><div class="mut">${esc(s.d)} · due ${esc(dl)} ET</div></div><span class="ss ${c}">${t}</span></div>`};
- $("weekview").innerHTML=`<div class="card wk"><h3>This week · week of ${esc(fmtWk(WEEK.week))}</h3><div class="stag">${WEEK.steps.map(row).join("")}</div><div class="mut">Status comes from the files in the week folder at build time (${esc("Fri Oct 16, 2026 4:56 PM ET")}).</div></div>${weekDebateHTML()}${scorecardsHTML()}`}
+ $("weekview").innerHTML=`<div class="card wk"><h3>This week · week of ${esc(fmtWk(WEEK.week))}</h3><div class="stag">${WEEK.steps.map(row).join("")}</div><div class="mut">Status comes from the files in the week folder at build time (${esc("Fri Oct 16, 2026 5:17 PM ET")}).</div></div>${weekDebateHTML()}${scorecardsHTML()}`}
 
 // ---------- haptics (vibrate where supported; iOS 18+ switch-checkbox trick) ----------
 function haptic(){try{navigator.vibrate&&navigator.vibrate(10)}catch(e){}try{const l=document.getElementById("hpl");if(l&&/iP(hone|ad|od)/.test(navigator.userAgent))l.click()}catch(e){}}
@@ -691,7 +691,7 @@ function spark(ps){const se=ps.filter(p=>p.result!=="PENDING").sort((a,b)=>(a.st
  return `<svg class="spk" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}"><defs><linearGradient id="sg" x1="0" x2="1"><stop offset="0" stop-color="#6a55e0"/><stop offset="1" stop-color="#b4b0fc"/></linearGradient></defs><line x1="2" x2="${W-2}" y1="${y(0)}" y2="${y(0)}" stroke="#fff" stroke-opacity=".12" stroke-dasharray="2 3"/><path d="${pts.map((v,i)=>`${i?"L":"M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ")}" fill="none" stroke="url(#sg)" stroke-width="2" stroke-linejoin="round"/><circle cx="${x(pts.length-1)}" cy="${y(pts[pts.length-1])}" r="2.6" fill="${pts[pts.length-1]>=0?"#6ee7b7":"#e8909f"}"/></svg>`}
 const confB0=p=>{const c=p&&p.conf;const k=c==="High"?"hi":c==="Medium"?"md":c==="Low"?"lo":"na";return `<span class="cf cf-${k}" title="Confidence${p&&p.conf_src==="ideas"?" (from ideas.md)":""}">${k==="na"?"—":esc(c)}</span>`};
 const confB=p=>confB0(p)+(p&&p.passed==="no"?`<span class="bavail" title="Best available · didn't pass the debate" aria-label="Best available · didn't pass the debate" tabindex="0">◇ BA</span>`:"");
-(function(){let q=0;const run=()=>{q=0;if(BAPOS==="inline")document.querySelectorAll(".bavail:not(.bain)").forEach(b=>{const c=b.closest(".cp,[data-row]");const t=c&&c.querySelector(".bt,.hb");if(t){b.classList.add("bain");t.appendChild(b)}});["pin","histview"].forEach(id=>{const c=document.getElementById(id);if(!c)return;const has=c.querySelector(".bavail"),lg=c.querySelector(".balegend");if(has&&!lg){const d=document.createElement("div");d.className="balegend";d.innerHTML=`<span class="bavail-k">◇ BA</span> Best available · didn't pass the debate (top-2 minimum card; graded at $20 like any pick)`;id==="pin"?((c.querySelector(".cards")||{}).parentNode||c).appendChild(d):c.prepend(d)}else if(!has&&lg)lg.remove()})};new MutationObserver(()=>{if(!q){q=1;run()}}).observe(document.documentElement,{childList:true,subtree:true})})();
+(function(){let q=0;const run=window.baFix=()=>{q=0;if(BAPOS==="inline")document.querySelectorAll(".bavail:not(.bain)").forEach(b=>{const c=b.closest(".cp,[data-row]");const t=c&&c.querySelector(".bt,.hb");if(t){b.classList.add("bain");t.appendChild(b)}});["pin","histview"].forEach(id=>{const c=document.getElementById(id);if(!c)return;const has=c.querySelector(".bavail"),lg=c.querySelector(".balegend");if(has&&!lg){const d=document.createElement("div");d.className="balegend";d.innerHTML=`<span class="bavail-k">◇ BA</span> Best available · didn't pass the debate (top-2 minimum card; graded at $20 like any pick)`;id==="pin"?((c.querySelector(".cards")||{}).parentNode||c).appendChild(d):c.prepend(d)}else if(!has&&lg)lg.remove()})};new MutationObserver(()=>{if(!q){q=1;run()}}).observe(document.documentElement,{childList:true,subtree:true})})();
 const chip=r=>`<span class="r r-${r}">${r==="PENDING"?"OPEN":r}</span>`;
 const BT={total:["TOTAL","t-total"],spread:["SPREAD","t-spread"],prop:["PROP","t-prop"],parlay:["PARLAY","t-parlay"],ml:["ML","t-ml"],moneyline:["ML","t-ml"]};
 function btype(p){const m=(p.market||"").toLowerCase();if(BT[m])return m;if(p.sport==="parlay"||/parlay/i.test(p.bet))return"parlay";if(/^(OVER|UNDER)\s/i.test(p.bet))return"total";if(/[+-]\d+(\.\d)?$/.test(p.bet))return"spread";if(/\bML\b|moneyline/i.test(p.bet))return"ml";return"prop"}
@@ -736,7 +736,7 @@ function renderHist(){const el=$("histview");if(cur!=="history"){el.innerHTML=""
  el.querySelectorAll("[data-moreweeks]").forEach(b=>b.onclick=()=>{histWeeksShown+=6;renderHist()});
  countUp(el)}
 document.addEventListener("click",e=>{const g=e.target.closest&&e.target.closest("[data-go]");if(g){e.preventDefault();haptic();const t=g.dataset.go;keepTabs(()=>{cur=t;history.replaceState(null,"","#"+cur);render()},true)}});
-function keepTabs(fn,toTop){const tb=$("tabs"),r0=tb.getBoundingClientRect().top,past=toTop||r0<0;fn();const nt=$("tabs"),abs=nt.getBoundingClientRect().top+scrollY,y=past?abs-8:abs-r0;document.body.style.minHeight=Math.ceil(y+innerHeight)+"px";scrollTo({top:Math.max(0,y),behavior:"instant"});const n=document.activeElement;if(n&&n.blur&&n.closest&&n.closest("#tabs"))n.blur()}
+function keepTabs(fn,toTop){const tb=$("tabs"),r0=tb.getBoundingClientRect().top,past=toTop||r0<0;fn();if(window.baFix)baFix();const nt=$("tabs"),abs=nt.getBoundingClientRect().top+scrollY,y=past?abs-8:abs-r0;document.body.style.minHeight=Math.ceil(y+innerHeight)+"px";scrollTo({top:Math.max(0,y),behavior:"instant"});const n=document.activeElement;if(n&&n.blur&&n.closest&&n.closest("#tabs"))n.blur()}
 document.addEventListener("click",e=>{const a=e.target.closest&&e.target.closest('a[href^="#"]');if(a){e.preventDefault();history.replaceState(null,"",a.getAttribute("href"))}},true);
 
 // ---------- scorecards (Curry / Bet Tracker) ----------
@@ -783,7 +783,7 @@ function shadowHTML(){const L=SHADOW.ledger||[],C=SHADOW.cuts||[],B=SHADOW.brier
  ${C.length?`<div class="mut" style="margin-top:8px">Cut pitches (shadow_log): <b>${c.W}-${c.L}-${c.P}</b> · <span class="${cls(c.pl)}">${c.n?fd(c.pl):"$0.00"}</span> · ${c.open} grading</div>`:""}
  <div class="mut" style="margin-top:4px;font-size:11px">Model ledger: qualifying sides from props/shadow/ledger.csv, one per player/market/side (first logged). Graded at $${PER_UNIT} flat.</div></div>`}
 // ---------- auto-update (home-screen apps have no pull-to-refresh) ----------
-const BUILD_ID="Fri Oct 16, 2026 4:56 PM ET";
+const BUILD_ID="Fri Oct 16, 2026 5:17 PM ET";
 function hardReload(){location.replace(location.pathname+"?r="+Date.now()+location.hash)}
 async function checkUpdate(){try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/const BUILD_ID="([^"]*)"/);if(m&&m[1]!==BUILD_ID)hardReload()}catch(e){}}
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")checkUpdate()});
